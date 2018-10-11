@@ -1,0 +1,147 @@
+.content{
+	width: 950px;
+	margin: 0px auto;
+}
+.box-hd{
+    background: #efefef;
+    border-bottom: 2px solid #f40;
+    vertical-align: middle;
+    line-height: 35px;
+    z-index: 1;
+    height: 35px;
+}
+.box-hd h3{
+    float: left;
+    background-color: #f40;
+    padding: 0 2.4em;
+    margin: 0 .4em 0 0;
+    min-width: 4em;
+    text-align: center;
+    color: #FFF;
+    font-size: 1.4em;
+    font-weight: 300;
+}
+/*评论主体*/
+.box-bd{
+    border: 1px solid #d9e3eb;
+    margin: 0 auto;
+}
+.item-rate-info {
+    width: 160px;
+    position: relative;
+    float: left;
+    padding: 20px 0 0 100px;
+    margin-top: 20px;
+}
+.item-rate-main{
+	float: left;
+    margin-left: 20px;
+    width: 570px;
+    margin-top: 20px;
+}
+.rate-box{
+	display: block;
+	border-top: 1px #d9e3eb dashed;
+	height: 250px;
+}
+.rate-msg-box {
+    border: 1px solid #DAF1FC;
+    padding: 3px;
+    background: #EEF8FD;
+    zoom: 1;
+}
+.rate-msg-box .ft {
+    vertical-align: middle;
+    clear: both;
+}
+.rate-msg-box .ft:after {
+    content: " ";
+    display: table;
+}
+.photo-uploader{
+    float: left;
+    vertical-align: middle;
+    padding: 3px 0 0;
+    width: 130px;
+    clear: both;
+}
+.photo-uploader .upload-btn {
+    line-height: 20px;
+    position: relative;
+    float: left;
+    margin-top: 4px;
+    -webkit-transition: background .3s;
+    -moz-transition: background .3s;
+    -o-transition: background .3s;
+    transition: background .3s;
+    border: 1px solid #7CA0B8;
+    font-size: 12px;
+    text-align: center;
+    background-color: #93B4C6;
+    cursor: pointer;
+    color: #FFF;
+    padding-right: 2px;
+    margin-left: 40px;
+}
+.photo-uploader .upload-btn .file-input-wrapper {
+    display: block;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    position: absolute;
+    z-index: 300;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+}
+.rate-control ul li{
+    display: inline;
+    margin: 30px;
+}
+.rate-control ul li img{
+    width: 20px;
+    height: 20px;
+}
+.bookImg{
+	width: 130px;
+	height: 130px;
+}
+.textinput{
+	    z-index: 0;
+}
+.textinput textarea{
+    padding: 8px;
+    width: 544px;
+    border: 1px solid #CCC;
+    height: 110px;
+    outline: 0;
+    display: block;
+    resize: vertical;
+    
+	
+}
+/*提交按钮样式*/
+.submitbox{
+    margin-top: 10px;
+    padding: 20px 380px 30px;
+}
+.btn-primary{
+    color: #fff;
+    background-color: #3498db;
+    min-width: 130px;
+    transition: color .25s linear,background-color .25s linear;
+    cursor: pointer;
+    outline: 0;
+    box-shadow: inset 0 -2px 0 rgba(0,0,0,.15);
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    -webkit-font-smoothing: subpixel-antialiased;
+    font-size: 13px;
+    line-height: 1.385;
+    padding: 9px 13px;
+    border-radius: 4px;
+    font-weight: 400;
+    border: none;
+}

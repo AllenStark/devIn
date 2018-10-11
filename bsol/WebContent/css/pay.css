@@ -1,0 +1,154 @@
+body {
+	margin: 0px;
+	background-color: gainsboro;
+}
+header{
+	width: 100%;
+	border-bottom: 2px gray solid;
+	background-color: white;
+}
+#header{
+	width: 1200px;
+	margin: 0 auto;
+	height: 70px;
+}
+.logo-title{
+	display: block;
+	font-size: 35px;
+	float: left;
+	width: 200px;
+	text-align: center;
+	margin-top: 10px;
+}
+#hot-line{
+	float: right;
+	margin-top: 30px;
+	font-size: 18px;
+	margin-right: 10px;
+}
+#content{
+	width: 1200px;
+	margin: 0 auto;
+	/*height: 80px;*/
+}
+#J_Order{
+	height: 160px;
+}
+.J_APop{
+	/*float: left;*/
+	margin-top: 10px;
+}
+.order-title{
+	padding-left: 10px;
+	float: left;
+	width: 700px;
+	margin-top: 30px;
+	font-size: 18px;
+}
+.order-seller{
+	padding-left: 10px;
+	float: left;
+	width: 700px;
+	font-size: 18px;
+}
+.order-amount{
+	float: right;
+	margin-top: 80px;
+	font-size: 18px;
+	margin-right: 10px;
+}
+#J-payMethod{
+	background-color: white;
+	border-bottom: 2px gray solid;
+	border-top: 2px gray solid;
+	height: 600px;
+	/*float: left;*/
+}
+#J_SavecardList li{
+	list-style-type: none;
+	display: block;
+	height: 70px;
+	line-height: 70px;
+	margin: 0 30px auto 0px;
+	margin-bottom: 5px;
+	font-size: 20px;
+}
+.channel-input{
+	float: left;
+	margin:30px 30px;
+}
+.pay-amount{
+	float: right;
+	margin-right: 30px;
+}
+.fn-clear a{
+	text-decoration: none;
+	border: 1px darkgray solid;
+	display: block;
+	padding: 10px;
+	width: 200px;
+	float: left;
+	text-align: center;
+	margin-top: 20px;
+	margin-left: 40px;
+	color: dodgerblue;
+}
+.fn-clear a:hover{
+	background:gainsboro;
+}
+#J-security{
+	margin: 40px 40px;
+	font-size: 18px;
+}
+#J-rcSubmit{
+	margin: 40px 40px;
+}
+.btn {
+	display:inline-block;
+	*display:inline;
+	*zoom:1;
+	margin-bottom:0;
+	font-size:14px;
+	height:38px;
+	line-height:38px;
+	text-align:center;
+	cursor:pointer;
+	background-color:#fff;
+	border:1px solid #ff4a00;
+	color:#ff4a00;
+	padding:0;
+	width:148px
+}
+.btn-primary {
+	background-color: dodgerblue;
+	border-color: royalblue;
+	color:#fff
+}
+
+.btn-primary:hover,.btn-primary:focus,.btn-primary.active,.btn-primary:active {
+	color:#fff;
+	border-color:blue;
+	background-color:royalblue
+}
+.password{
+	width: 30px;
+	height: 30px;
+	text-align: center;
+	margin-top: 7px;
+	margin-bottom: 10px;
+}
+.edit-link a{
+	text-decoration: none;
+}
+.password{
+	font-size:18px;
+}
+footer{
+	width: 100%;
+	text-align: center;
+	/*bottom: 0px;*/
+	/*float: left;*/
+}
+.copyright,.copyright a,.copyright a:hover {
+	color: #808080;
+	}
