@@ -1,5 +1,9 @@
 package hstc.bsol.servlet;
 
-public class test {
+import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
 
+public class test {
+	public void get() {
+		
+	}
 }
