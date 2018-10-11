@@ -54,7 +54,7 @@
 		<header style="background-color: #f4f4f4;">
 			<div class="index_header f12">
 				<div class="index_header_L fl">
-					<a href="#">配送至：广州市</a>
+					<a href="#">配送至12：广州市</a>
 				</div>
 				<div class="index_header_R fr">
 					<span class="fl">您好！请</span>
