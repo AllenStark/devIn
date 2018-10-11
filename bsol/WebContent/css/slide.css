@@ -1,0 +1,62 @@
+/*图片轮番开始*/
+ul li{list-style: none;}
+.banner_page_center {
+    width: 700px;
+    height: 387px;
+    position: relative;
+    overflow: hidden;
+}
+ 
+.banner_page_center span:nth-of-type(1) {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: url(../images/b_left.png) no-repeat;
+    top: 40%;
+    left: 48px;
+    z-index: 12;
+    cursor: pointer;
+    display: none;
+}
+ 
+.banner_page_center span:nth-of-type(2) {
+	position: absolute;
+    width: 60px;
+    height: 60px;
+    background: url(../images/b_right.png) no-repeat 20px 0px;
+    top: 40%;
+    right: 0px;
+    z-index: 12;
+    cursor: pointer;
+    display: none;
+}
+ 
+.page_img li {
+    display: none;
+    cursor: pointer;
+}
+.page_img li a img {
+     width: 700px;
+    height: 387px;
+}
+ 
+.banner_page_center .page_con {
+    position: absolute;
+    left: 295px;
+    bottom: 10px;
+    width: 100%;
+    z-index: 1;
+}
+ 
+.banner_page_center .page_con li {
+    width: 20px;
+    height: 17px;
+    padding-top: 3px;
+    text-align: center;
+    display: inline-block;
+    background-color: #CCCCCC;
+    border-radius: 10px;
+    margin-left: 13px;
+    cursor: pointer;
+}
+/*图片轮番结束*/
