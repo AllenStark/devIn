@@ -161,7 +161,7 @@
 		                                <span class="col col-4">小计（元）</span>
 		                            </dt>
 <!-- 单条订单项内容 -->
-									<%-- <c:forEach var="" items="" varStatus=""> --%>
+									 <c:forEach var="cartitem" items="${mapCart }" varStatus="">
 										<dd class="item clearfix">
 											<div class="item-row">
 												<div class="col col-1">
@@ -170,17 +170,17 @@
 													</div>
 													<div class="g-info">
 														<a href="#">
-															小米T恤 忍者米兔双截棍 军绿 XXL 
+															${cartitem.getValue().getBook().getBookname() }
 														</a>
 													</div>
 												</div>
 	
-												<div class="col col-2">39元</div>
-												<div class="col col-3">1</div>
-												<div class="col col-4">39元</div>
+												<div class="col col-2">${cartitem.getValue().getBook().getPrice() }</div>
+												<div class="col col-3">${cartitem.getValue().cartitemcount }</div>
+												<div class="col col-4">${cartitem.getValue().subtotal }</div>
 											</div>
 										</dd>
-									<%-- </c:forEach> --%>
+									</c:forEach>
 <!-- 单条订单项内容END -->
 								</dl>
 								<div class="checkout-count clearfix">
@@ -189,7 +189,7 @@
 	                           <div class="checkout-price">
 	                               <ul>
 	                                   <li>
-	                                    	 订单总额：<span>244元</span>
+	                                    	 订单总额：<span>${totalPrice }元</span>
 	                                   </li>
 	                                   <li>
 	                                   	寄送至：<span id="addressOutput" style="color:black;"></span>
@@ -198,7 +198,7 @@
 	                                   	收货人：<span id="receivingPerson" style="color:black;"></span>
 	                                   </li>
 	                               </ul>
-	                               <p class="checkout-total">应付总额：<span><strong id="totalPrice">244</strong>元</span></p>
+	                               <p class="checkout-total">应付总额：<span><strong id="totalPrice">${totalPrice }</strong>元</span></p>
 	                           </div>
 	                           <!--  -->
 	                       </div>
