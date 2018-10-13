@@ -108,7 +108,7 @@
 					                <li><a href="#"><img src="images/ban1.jpg"/></a></li>
 					                <li><a href="#"><img src="images/index_slide1.png"/></a></li>
 					                <li><a href="#"><img src="images/index_slide2.png"/></a></li>
-					            </ul>
+						            </ul>
 					            <ul class="page_con">
 					                <li>1</li>
 					                <li>2</li>

@@ -18,8 +18,8 @@ ul li{
 .f16{font-size: 16px;}
 .fb{font-weight: bold;}
 .clear{clear: both;}
-/*-------------------------注册---------------------------*/
-/*注册头部*/
+/*-------------------------娉ㄥ唽---------------------------*/
+/*娉ㄥ唽澶撮儴*/
 .register_header{
 	width: 1200px;
 	margin: 0 auto;
@@ -49,7 +49,7 @@ ul li{
 }
 .register_header a:link,.register_header a:visited{color: black;text-decoration: none;}
 .register_header a:hover{color: red;}
-/*注册内容*/
+/*娉ㄥ唽鍐呭*/
 .register_content{background-color: #fcfcfc;}
 .register_content>div{
 	text-align: center;
@@ -149,7 +149,7 @@ ul li{
 	background-color: #ff3c3c;
 	font-size: 16px;
 }
-/*注册底部*/
+/*娉ㄥ唽搴曢儴*/
 .register_footer{
 	width:100%;
 	text-align: center;
@@ -165,14 +165,14 @@ ul li{
 
 
 
-/*-------------------登录--------------------------*/
+/*-------------------鐧诲綍--------------------------*/
 .login_content{width: 100%;width: 1200px;margin: 0 auto;}
 .login_left{
 	width: 690px;
 	text-align:center;
 	padding-top: 65px;
 }
-/*登录右边*/
+/*鐧诲綍鍙宠竟*/
 .login_right{
 	background-color: white;
 	padding: 35px 30px 35px 35px;
@@ -251,8 +251,8 @@ ul li{
 	color: red;
 	display: none;
 }
-/*-----------------------首页----------------------------*/
-/*首页顶部*/
+/*-----------------------棣栭〉----------------------------*/
+/*棣栭〉椤堕儴*/
 .index_header{width: 1200px;margin: 0 auto;height: 30px;line-height: 30px;}
 .seperate{float: left;display: block;width: 10px;}
 .index_header_R a{display: block;float: left;width: 60px;text-align: center;}
@@ -284,8 +284,8 @@ ul li{
     -ms-transform: rotateZ(180deg);
     transform: rotateZ(180deg);
 }
-/*-------------首页正文*/
-/*首页正文第一部分*/
+/*-------------棣栭〉姝ｆ枃*/
+/*棣栭〉姝ｆ枃绗竴閮ㄥ垎*/
 .index_content_1st{width: 1200px;}
 .index_content{width: 1200px;margin: 0 auto;height: 150px;padding-top: 20px;}
 .index_content1_L{width: 240px;padding-top: 20px;}
@@ -321,7 +321,7 @@ ul li{
 	color: dimgray;
 }
 .index_content1_R{position: relative;}
-/*隐藏的购物车*/
+/*闅愯棌鐨勮喘鐗╄溅*/
 .cart_hide{
 	position: absolute;
 	width: 280px;
@@ -366,7 +366,7 @@ ul li{
 	line-height: 25px;
 }
 
-/*--------商品分类---------*/
+/*--------鍟嗗搧鍒嗙被---------*/
 .index_content_2nd{
 	margin-top: 20px;
 	width: 1200px;
@@ -382,7 +382,7 @@ ul li{
 }
 .shopping_select_R ul li a:link,.shopping_select_R ul li a:visited{color: black;text-decoration: none;}
 .shopping_select_R ul li a:hover{color: red;}
-/*轮播*/
+/*杞挱*/
 .index_content2_L{
 	background-color: #C13131;
 	width: 210px;
@@ -396,7 +396,7 @@ ul li{
 	padding-left: 10px;
 }
 .index_content2_L ul li a:link,.index_content2_L ul li a:visited{color: white;text-decoration: none;}
-/*轮播开始*/
+/*杞挱寮�濮�*/
 .banner{border-top: 1px #FE3C3C solid;}
 .banner_page_center {
     width: 770px;
@@ -484,7 +484,7 @@ ul li{
 .index_content2_R>span{font-size: 12px;height: 30px;line-height: 30px;padding-left: 8px;}
 .index_content2_R>i{padding-left: 8px;line-height: 32px;}
 
-/*第三部分*/
+/*绗笁閮ㄥ垎*/
 .index_content_3rd{
 	padding-top: 10px;
 }
@@ -505,7 +505,7 @@ ul li{
 .pic_ban{margin: 20px 0;}
 .index_conten3_pic2>div{transition: all 0.3s linear;}
 .index_conten3_pic2>div:hover{transform: translateX(-7px);}
-/*轮播*/
+/*杞挱*/
 .index_conten3_slide{
 	width: 965px;
 	height: 222px;
@@ -516,8 +516,8 @@ ul li{
 .index_conten3_slide>b:nth-of-type(2){position: absolute;top: 40%;right: 0px;cursor: pointer;z-index: 1;display: none;}
 .index_conten3_slide>ul{width: 2895px;}
 .index_conten3_slide>ul li{float: left;}
-/*第四部分---公共部分*/
-/*进口生鲜*/
+/*绗洓閮ㄥ垎---鍏叡閮ㄥ垎*/
+/*杩涘彛鐢熼矞*/
 .index_public{width: 1200px;margin: 10px auto;}
 .index_public_L>ul .floor{
 	padding-left: 5px;
@@ -537,9 +537,9 @@ ul li{
 	font-size: 12px;
 }
 .index_public_R>ul li a{color: #666666;text-decoration: none;}
-/*公共部分正文*/
+/*鍏叡閮ㄥ垎姝ｆ枃*/
 .index_public_content{border-top: #C13131 1px solid;width: 1200px;}
-/*公共左边*/
+/*鍏叡宸﹁竟*/
 .index_public_contentL{width: 211px;height:286px;background-color: #D8EEFC;position: relative;overflow: hidden;}
 .index_public_contentL>b:nth-of-type(1){
 	position: absolute;
@@ -582,7 +582,7 @@ ul li{
 .index_public_contentL{height: 445px;}
 .public_contentL_img{width: 633px;height: 286px;}
 .public_contentL_img li{float: left;}
-/*公共中间*/
+/*鍏叡涓棿*/
 .index_public_contentM table{border-collapse: collapse;}
 .index_public_contentM table td{
 	border-top: none;
@@ -600,7 +600,7 @@ ul li{
 .index_public_contentM table tr td>div{transition: all 0.3s linear;}
 .index_public_contentM table tr td>div:hover{transform:translateX(-7px);}
 
-/*公共右边*/
+/*鍏叡鍙宠竟*/
 .index_public_contentR{width: 260px;}
 
 
@@ -620,7 +620,7 @@ ul li{
 
 
 
-/*底部*/
+/*搴曢儴*/
 .index_footer{
 	width: 1200px;
 	margin: 0 auto;
@@ -636,28 +636,28 @@ ul li{
 	padding-left: 110px;
 }
 .index_footer_1st ul li>p{color: #666666;height: 30px;line-height: 30px;}
-/*底部第二部分*/
-.index_footer_2nd{padding: 20px 69px; margin: 0px 0px 0px 80px;}
+/*搴曢儴绗簩閮ㄥ垎*/
+.index_footer_2nd{padding: 20px 69px; margin: 0px 0px 0px 170px;}
 .index_footer_2nd>ul{width: 160px;}
 .index_footer_2nd ul li{font-size: 12px;line-height: 25px;}
 .index_footer_2nd ul li b{font-size: 14px;line-height: 40px;}
 .index_footer_2nd ul li a:link,.index_footer_2nd ul li a:visited{color: #666666;text-decoration: none;}
 .index_footer_2nd ul li a:hover{color: darkred;}
 
-.index_footer2_R1 p span{font-family: "楷体";}
+.index_footer2_R1 p span{font-family: "妤蜂綋";}
 .index_footer2_R2{padding-left: 15px;}
 .index_footer2_R2>p span a{color: black;text-decoration: none;font-size: 14px;line-height: 40px;}
 .index_footer2_R2>p span a:hover{color: darkred;}
 .index_footer2_R2>p img{vertical-align: middle;}
 .index_footer2_R2>div{margin-top: 15px;}
 .index_footer2_R2>b{color: orangered;line-height: 30px;}
-/*底部第三部分*/
+/*搴曢儴绗笁閮ㄥ垎*/
 .index_footer_3rd{border-top: 1px solid #CCCCCC;width: 1200px;color: #666666;text-align: center;line-height: 60px;}
 .index_footer_3rd>ul{width: 900px;margin: 0 auto;}
 .index_footer_3rd>ul li{float: left;width: 150px;}
 
 
-/*详情页*/
+/*璇︽儏椤�*/
 .detail_content_2nd{width: 1200px;margin: 0 auto;}
 
 .detail_content_2nd>div:nth-of-type(2) h3{
@@ -733,7 +733,7 @@ ul li{
 .detail_base_M p:nth-of-type(4){line-height: 45px;height: 45px;}
 .detail_base_M p:nth-of-type(4) img{vertical-align: middle;padding-right: 3px;}
 .detail_base_M p:nth-of-type(4) a{color: #666666;text-decoration: none;margin-right: 15px;}
-/*隐藏的打折信息*/
+/*闅愯棌鐨勬墦鎶樹俊鎭�*/
 .discount{border: 1px #CCCCCC solid;color: #666666;position: absolute;width: 510px;top: 120px;right: 30px;background-color: white;display: none;}
 .discount>p:nth-of-type(1){
 	border-bottom: 1px #CCCCCC solid;
@@ -748,7 +748,7 @@ ul li{
 .discount>p span{padding: 1px 3px;background-color: #ff875a;color: white;margin:0px 10px;}
 .discount>p:nth-of-type(2) a{padding-left: 20px;}
 
-/*地址选择*/
+/*鍦板潃閫夋嫨*/
 .address_model{
 	width: 470px;
 	padding: 10px 0px 20px 12px;
@@ -845,7 +845,7 @@ ul li{
 .detail_contentR_top table tr td div{text-align: center;}
 .detail_contentR_top table tr td input{width: 90px;height: 30px;color: #333333;font-size: 12px;background-color: #fbfbfb;border: 1px #CCCCCC solid;border-radius: 3px;margin-bottom: 20px;cursor: pointer;}
 
-/*详情页选项卡*/
+/*璇︽儏椤甸�夐」鍗�*/
 .detail_select_top{margin:10px 0;}
 .detail_select_top>ul{width: 978px;border: 1px #CCCCCC solid;background-color: #f7f7f7;height: 40px;line-height: 40px;}
 .detail_select_top>ul li{float: left;width: 110px;border-right: 1px solid #CCCCCC;text-align: center;font-size: 14px;display: block;}
@@ -898,7 +898,7 @@ ul li{
 .detail_select_chg3>div p b{font-size: 14px;color: #666666;line-height: 30px;}
 .detail_select_chg3>div span{font-size: 12px;color: #666666;line-height: 40px;}
 
-/*评价*/
+/*璇勪环*/
 .detail_chg2_evaluate{width: 980px;padding: 20px 15px;}
 .evaluate_top{color: #666666;}
 
@@ -971,7 +971,7 @@ ul li{
 }
 
 
-/*购物车*/
+/*璐墿杞�*/
 .shopping_cart{width: 1200px;margin: 0 auto;}
 .cart_L{position: relative;}
 .cart_L>a img{
@@ -1062,7 +1062,7 @@ ul li{
 	height: 520px;
 }
 
-/*购物车下方滚动块*/
+/*璐墿杞︿笅鏂规粴鍔ㄥ潡*/
 .cart_slide ul{
 	width: 5500px;
 	height: 500px;
