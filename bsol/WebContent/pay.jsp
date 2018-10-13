@@ -130,7 +130,7 @@
 							            支付宝支付密码：
 							</label>
 							<div id="divPwd">
-							<input type="password" tabindex="1" class="password" maxlength="1" reado><input type="password" tabindex="2" class="password"  maxlength="1"><input type="password" tabindex="3" class="password"  maxlength="1"><input type="password" tabindex="4" class="password"  maxlength="1"><input type="password" tabindex="5" class="password"><input type="password" tabindex="6" class="password" maxlength="1">
+							<input type="password" tabindex="1" class="password" maxlength="1" reado><input type="password" tabindex="2" class="password"  maxlength="1"><input type="password" tabindex="3" class="password"  maxlength="1"><input type="password" tabindex="4" class="password"  maxlength="1"><input type="password" tabindex="5" class="password" maxlength="1"><input type="password" tabindex="6" class="password" maxlength="1">
 							</div>
 						<span class="ui-form-other edit-link">
   						<a target="_blank" href="https://lab.alipay.com/user/passwordfind/index.htm?type=P">忘记密码？</a>       

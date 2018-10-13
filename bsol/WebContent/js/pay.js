@@ -4,6 +4,7 @@ $(document).ready(function(){
 		$(".channel-input").parent().css("border","");
 		$(".channel-input:checked").parent().css("border","2px blue solid");
 	});
+	
 	$(".password").click(function(){
 		var pwd = $(".password");
 		for(var i=0;i<pwd.length;i++){
@@ -13,23 +14,19 @@ $(document).ready(function(){
 			}
 		}
 	});
-	$(".password").change(function(){
-		if(!isNaN($(this).val())){
+	$(".password").keydown(function(event) {  
+        if (event.keyCode == 8) { 
+            //执行操作
+       	 if($(this).val().length==0){
+       		event.preventDefault();   
+       		 var pre = $(this).prev();
+       		 pre.focus();
+       	 }
+        }  
+    });
+	$('.password').bind('input propertychange',function(){
+		if($(this).val().length!=0){
 			$(this).next().focus();
-		}else{
-			$(this).val("");
-			$(this).focus();
-		}
-	});
-	$(".password").eq(5).blur(function(){
-		$(".password").eq(0).focus();
-	});
-	$(".password").blur(function(){
-		var pwd = $(".password");
-		if(pwd.eq(0).val()==""){
-			pwd.eq(0).focus();
-		}else if($(this).val()==""){
-				$(this).focus();
 		}
 	});
 	
