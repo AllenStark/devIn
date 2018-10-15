@@ -9,5 +9,5 @@ public interface BookDao {
 	public List<Book> queryAllBook();
 
 	// 根据书号查询所有图书
-	public Book queryOneBookByIsbn(Long isbn);
+	public Book queryOneBookByIsbn(long isbn);
 }
