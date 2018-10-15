@@ -57,6 +57,14 @@ $(function () {
             totalMoney();
         })
     });
+    
+  //搜索
+    $('#search').keyup(function(event){
+    	if(event.keyCode == 13){
+    		isbn = $(this).val();
+    		location.href="CartItemServlet?method=searchCart&isbn="+isbn;
+    	}
+    });
     //=================================================商品数量==============================================
     
     var $plus = $('.plus'),
@@ -66,14 +74,11 @@ $(function () {
     $plus.click(function () {
         var $inputVal = $(this).prev('input'),
             $count = parseInt($inputVal.val())+1,
-            $obj = $(this).parents('.amount_box').find('.reduce'),
+            /*$obj = $(this).parents('.amount_box').find('.reduce'),*/
             $priceTotalObj = $(this).parents('.order_lists').find('.sum_price'),
             $price = $(this).parents('.order_lists').find('.price').html(),  //单价
-            $priceTotal = $count*parseInt($price.substring(1)),
-            $isbn = $(this).parents('.order_lists').find("input[type='hidden']").val();
-        /*alert($isbn);
-        alert($userid);*/
-        
+            $priceTotal = $count*parseFloat($price),
+            $isbn = $(this).parents('.order_lists').find(".son_check").val();
         /*ajax实现点击增加数量*/
         $.ajax({
 			url:"CartItemServlet?method=chgCartCount",
@@ -98,7 +103,7 @@ $(function () {
         if($inputVal.val()>1 && $obj.hasClass('reSty')){
             $obj.removeClass('reSty');
         }
-        totalMoney();
+        /*totalMoney();*/
     });
 
     $reduce.click(function () {
@@ -106,8 +111,8 @@ $(function () {
             $count = parseInt($inputVal.val())-1,
             $priceTotalObj = $(this).parents('.order_lists').find('.sum_price'),
             $price = $(this).parents('.order_lists').find('.price').html(),  //单价
-            $priceTotal = $count*parseInt($price.substring(1)),
-            $isbn = $(this).parents('.order_lists').find("input[type='hidden']").val();
+            $priceTotal = $count*parseFloat($price),
+            $isbn = $(this).parents('.order_lists').find(".son_check").val();
         
         if($inputVal.val()>1){
         	/*ajax实现点击减少数量*/
@@ -134,7 +139,7 @@ $(function () {
         if($inputVal.val()==1 && !$(this).hasClass('reSty')){
             $(this).addClass('reSty');
         }
-        totalMoney();
+        /*totalMoney();*/
     });
     var $chgCount=0;
     $all_sum.click(function(){
@@ -145,7 +150,7 @@ $(function () {
         var $priceTotalObj = $(this).parents('.order_lists').find('.sum_price'),
             $price = $(this).parents('.order_lists').find('.price').html(),  //单价
             $priceTotal = 0,
-            $isbn = $(this).parents('.order_lists').find("input[type='hidden']").val(),
+            $isbn = $(this).parents('.order_lists').find(".son_check").val(),
             $newCount = $(this).val();
         if($newCount=='' || $newCount==0){
             $(this).val($chgCount);
@@ -155,7 +160,7 @@ $(function () {
         	$(this).val($chgCount);
         }
         $count = $(this).val();
-        
+        $priceTotal = $count*$price;
         $.ajax({
 			url:"CartItemServlet?method=chgCartCount",
 			type:"get",
@@ -163,7 +168,7 @@ $(function () {
 			success:function(result){
 				if($.trim(result) == "true"){
 					/*alert("修改数量成功!");*/
-					$inputVal.val($count);
+					/*$inputVal.val($count);*/
 		            $priceTotalObj.html('￥'+$priceTotal);
 				}else{
 					alert("修改失败!");
@@ -175,10 +180,7 @@ $(function () {
 				return;
 			}
 		});
-        
-        $priceTotal = $count*parseInt($price.substring(1));
-        $priceTotalObj.html('￥'+$priceTotal);
-        totalMoney();
+        /*totalMoney();*/
     });
     //======================================总计==========================================
     function totalMoney() {
@@ -187,8 +189,8 @@ $(function () {
         var calBtn = $('.calBtn a');
         $sonCheckBox.each(function () {
             if ($(this).is(':checked')) {
-                var goods = parseInt($(this).parents('.order_lists').find('.sum_price').html().substring(1));
-                var num =  parseInt($(this).parents('.order_lists').find('.sum').val());
+                var goods = parseFloat($(this).parents('.order_lists').find('.sum_price').html().substring(1));
+                var num = parseFloat($(this).parents('.order_lists').find('.sum').val());
                 total_money += goods;
                 total_count += num;
             }
@@ -226,7 +228,6 @@ function deleteSome(){
 			isbns+=chooseItem[x].value+",";
 		}
 	}
-	alert(isbns);
 	if(message){
 		window.location.href="CartItemServlet?method=deleteSomeCart&isbns="+isbns;
 	}
@@ -236,7 +237,6 @@ function account(){
 	var chooseItem = $('.son_check'),
 	 	totalPrice = $('.total_text').text(),
 		isbns = 0;
-	alert(totalPrice);
 	for(var x=0;x<chooseItem.length;x++){
 		if(chooseItem[x].checked == true){
 			isbns+=chooseItem[x].value+",";
@@ -244,5 +244,6 @@ function account(){
 	}
 	window.location.href="CartItemServlet?method=account&isbns="+isbns+"&totalPrice="+totalPrice;
 }
+
 
 
