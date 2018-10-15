@@ -17,13 +17,15 @@ checkbox.mark{
     background: url("../images/mark1.png") no-repeat -1px -1px;
 }
 
-/* 
-label.mark{
-    background: url("../images/mark1.png") no-repeat -1px -1px;
-} */
 a:hover{
     color: #ff873e;
     text-decoration: underline;
+}
+.cart_contents{
+	width: 1200px;
+	margin: 0 auto;
+	font-size: 16px;
+	padding-top: 40px;
 }
 .cartMain{
     position: relative;
@@ -37,6 +39,7 @@ a:hover{
 /*閻犳劦鍘炬晶鎸庢姜閿曪拷閵囨棃鏌堥敓锟�*/
 .cartMain_hd{
     width: 100%;
+    margin-left: 22px;
     height: 50px;
     line-height: 50px;
     color: #3c3c3c;
@@ -50,7 +53,7 @@ a:hover{
     margin: 0px 5px 0 24px;
 }
 .cartMain_hd .cartTop .list_con{
-    width: 500px;
+    width: 540px;
 }
 
 .cartMain_hd .cartTop .list_info{
@@ -117,9 +120,9 @@ a:hover{
     vertical-align: top;
 }
 .order_lists .list_con .list_text{
-    margin: 20px 0 0 10px;
+    margin: 20px 0 0 60px;
     line-height: 18px;
-    width: 200px;
+    width: 300px;
     float: left;
 }
 .order_lists .list_con .list_text a{

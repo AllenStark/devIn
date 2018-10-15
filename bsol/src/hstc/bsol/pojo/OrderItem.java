@@ -9,12 +9,13 @@ public class OrderItem {
 	private String evacontent;	
 	private String evadate;	
 	private String evaimg;
-	private int score;	
-	
-	public OrderItem() {}
+	private int evagrade;	
+	private Book book;
 
+	public OrderItem() {}
+	 
 	public OrderItem(int orderid, long isbn, int orderitemcount, double subtotal, int evastatus, String evacontent,
-			String evadate, String evaimg, int score) {
+			String evadate, String evaimg, int evagrade,Book book) {
 		super();
 		this.orderid = orderid;
 		this.isbn = isbn;
@@ -24,7 +25,8 @@ public class OrderItem {
 		this.evacontent = evacontent;
 		this.evadate = evadate;
 		this.evaimg = evaimg;
-		this.score = score;
+		this.evagrade = evagrade;
+		this.book = book;
 	}
 
 	public int getOrderid() {
@@ -91,20 +93,39 @@ public class OrderItem {
 		this.evaimg = evaimg;
 	}
 
-	public int getScore() {
-		return score;
+	public int getEvagrade() {
+		return evagrade;
 	}
 
-	public void setScore(int score) {
-		this.score = score;
+	public void setEvagrade(int evagrade) {
+		this.evagrade = evagrade;
+	}
+
+	public Book getBook() {
+		return book;
+	}
+
+
+
+	public void setBook(Book book) {
+		this.book = book;
+	}
+
+	
+
+	public OrderItem(int orderid, long isbn, String evacontent, String evaimg, int evagrade) {
+		this.orderid = orderid;
+		this.isbn = isbn;
+		this.evacontent = evacontent;
+		this.evaimg = evaimg;
+		this.evagrade = evagrade;
 	}
 
 	@Override
 	public String toString() {
 		return "OrderItem [orderid=" + orderid + ", isbn=" + isbn + ", orderitemcount=" + orderitemcount + ", subtotal="
 				+ subtotal + ", evastatus=" + evastatus + ", evacontent=" + evacontent + ", evadate=" + evadate
-				+ ", evaimg=" + evaimg + ", score=" + score + "]";
+				+ ", evaimg=" + evaimg + ", evagrade=" + evagrade + ",book=" + book + "]";
 	}
-	
 
 }
