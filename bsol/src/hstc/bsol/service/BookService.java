@@ -2,23 +2,23 @@ package hstc.bsol.service;
 
 import java.util.List;
 
-import hstc.bsol.impl.BookImpl;
+import hstc.bsol.dao.impl.BookDaoImpl;
 import hstc.bsol.pojo.Book;
 
 public class BookService {
-	BookImpl bookImpl = null;
+	BookDaoImpl bookDaoImpl = null;
 
 	public BookService() {
-		bookImpl = new BookImpl();
+		bookDaoImpl = new BookDaoImpl();
 	}
 
 	// 查询所有图书
 	public List<Book> queryAllBook() {
-		return bookImpl.queryAllBook();
+		return bookDaoImpl.queryAllBook();
 	}
 
 	// 根据书号查询所有图书
 	public Book queryOneBookByIsbn(Long isbn) {
-		return bookImpl.queryOneBookByIsbn(isbn);
+		return bookDaoImpl.queryOneBookByIsbn(isbn);
 	}
 }
