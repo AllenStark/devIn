@@ -1,4 +1,4 @@
-package hstc.bsol.impl;
+package hstc.bsol.dao.impl;
 
 import java.util.List;
 
