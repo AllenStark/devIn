@@ -2,7 +2,6 @@ package hstc.bsol.pojo;
 
 import java.text.DecimalFormat;
 
-import hstc.bsol.service.BookService;
 
 public class CartItem {
 	private int	userid;
@@ -11,8 +10,8 @@ public class CartItem {
 	private double subtotal;
 	private Book book;
 	public Book getBook() {
-		BookService bookService = new BookService();
-		book = bookService.queryOneBookByIsbn(isbn);
+//		BookService bookService = new BookService();
+//		book = bookService.queryOneBookByIsbn(isbn);
 		return book;
 	}
 	
