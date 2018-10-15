@@ -55,7 +55,7 @@ public class EvaluateServlet extends HttpServlet {
 		List<OrderItem> orderList = orderItemService.queryOrderitemByOrderid(orderid);
 		//通过订单的书籍编号得到书籍信息
 		for (OrderItem orderItem : orderList) {
-			orderItem.setBook(bookService.queryBookByIsbn(orderItem.getIsbn()));
+			orderItem.setBook(bookService.queryOneBookByIsbn(orderItem.getIsbn()));
 		}
 		//传递参数及转发
 		request.setAttribute("orderid", orderid);
