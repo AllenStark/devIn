@@ -17,7 +17,7 @@ public class BookDaoImpl implements BookDao {
 	}
 
 	// 根据书号查询所有图书
-	public Book queryOneBookByIsbn(Long isbn) {
+	public Book queryOneBookByIsbn(long isbn) {
 		String sql = "select * from book where isbn =?";
 		Object[] obj = { isbn };
 		List<Book> bookList = DbUtil.getBeanClassQuery(Book.class, sql, obj);
