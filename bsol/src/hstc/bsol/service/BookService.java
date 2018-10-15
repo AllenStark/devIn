@@ -18,7 +18,7 @@ public class BookService {
 	}
 
 	// 根据书号查询所有图书
-	public Book queryOneBookByIsbn(Long isbn) {
+	public Book queryOneBookByIsbn(long isbn) {
 		return bookDaoImpl.queryOneBookByIsbn(isbn);
 	}
 }
