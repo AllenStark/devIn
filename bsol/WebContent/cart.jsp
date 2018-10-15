@@ -46,14 +46,14 @@
 		</header>
 		<!--搜索栏-->
 		
-		<div class="index_content" style="background-color: #f8f8f8;width: 100%;height: 1150px;">
+		<div class="index_content" style="background-color: #f8f8f8;width: 100%;height: auto;">
 			<div class="shopping_cart">
 				<div class="shoppingcart_top">
 					<div class="cart_L fl f12">
 						<a href="index.html"><img src="images/shoppingcart.png"/></a>
 					</div>
 					<div class="cart_R fr">
-						<input type="text" name="" id="" placeholder="请输入书名/作者/书号" />
+						<input type="text" id="search" placeholder="请输入书号" />
 					</div>
 					<div class="clear"></div>
 				</div>
@@ -87,7 +87,6 @@
 				                        <input type="checkbox" class="son_check" value="${cart.getBook().getIsbn() }">
 				                    </li>
 				                    <li class="list_con">
-				                    	<input type="hidden" value="12">
 				                        <div class="list_img"><a href="javascript:;"><img src="images/1.png" alt=""><%-- ${cart.getBook().getCoverimg() } --%></a></div>
 				                        <div class="list_text"><a href="javascript:;">${cart.getBook().getBookname() }</a></div>
 				                    </li>
@@ -105,7 +104,7 @@
 				                        <p class="sum_price">￥${cart.getSubtotal()}</p>
 				                    </li>
 				                    <li class="list_op">
-				                        <p class="del"><a href="javascript:;" class="delBtn" onclick="deleteCartItem(2)">移除商品</a></p>
+				                        <p class="del"><a href="javascript:;" class="delBtn" onclick="deleteCartItem(${cart.getBook().getIsbn() })">移除商品</a></p>
 				                    </li>
 				                </ul>
 				             </c:forEach>
