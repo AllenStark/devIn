@@ -23,7 +23,7 @@ public class addCartItemServlet extends HttpServlet {
 		Object objUserid = request.getSession().getAttribute("userid");
 		if(objUserid != null) {
 			String strIsbn = request.getParameter("isbn");
-			Long isbn = Long.parseLong(strIsbn);
+			long isbn = Long.parseLong(strIsbn);
 			int userid = (int)objUserid;
 			CartItem cartItem = new CartItem(userid,isbn,1);
 			CartItemService cartItemService = new CartItemService();
