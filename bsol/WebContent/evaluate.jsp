@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -107,9 +108,12 @@
 				</h3>
 			</div>
 			<!--评论主体-->
+			<form action="evaluateServlet?method=evaluationOperate" enctype="multipart/form-data" method="post">
+			<input type="hidden" name="orderid" value="${orderid }">
 			<div class="box-bd">
 				<div class="itemlist">
 					<ul class="rate-list">
+					<c:forEach var="orderitem" items="${orderList }" varStatus="status">
 						<li class="rate-box">
 							<div class="item-rate-info">
 								<div class="item-detail">
@@ -117,7 +121,7 @@
 										<img src="https://img.alicdn.com/bao/uploaded/i3/2552227184/TB1J33xbsnI8KJjSspeXXcwIpXa_!!0-item_pic.jpg_460x460.jpg" class="bookImg">
 									</a>
 									<div class="item-title">
-										<a href="#" target="_blank" >迪奥的时尚笔记克里斯汀·迪奥</a>
+										<a href="#" target="_blank" >${orderitem.book.bookname }</a>
 									</div>
 								</div>
 							</div>
@@ -127,19 +131,19 @@
 										<ul>
 											<li class="good">
 												<label for="rate-good-228568685124373804">
-													<input type="radio" class="good-rate" name="grade" value="1">
+													<input type="radio" class="good-rate" name="grade${status.index }" value="1" checked="checked">
 													<img src="order/good.png" />
 												</label>
 											</li>
 											<li class="normal">
 												<label for="rate-normal-228568685124373804">
-													<input type="radio" class="noraml-rate" name="grade" value="0">
+													<input type="radio" class="noraml-rate" name="grade${status.index }" value="0">
 													<img src="order/normal.png" />
 												</label>
 											</li>
 											<li class="bad">
 												<label for="rate-bad-228568685124373804">
-													<input type="radio" class="bad-rate" name="grade" value="-1">
+													<input type="radio" class="bad-rate" name="grade${status.index }" value="-1">
 													<img src="order/bad.png" />
 												</label>
 											</li>
@@ -148,7 +152,8 @@
 								</div>
 								<div class="rate-msg-box">
 									<div class="textinput">
-										<textarea class="rate-msg"></textarea>
+										<input type="hidden" name="isbn" value="${orderitem.isbn }"> 
+										<textarea class="rate-msg" name="evacontent"></textarea>
 									</div>
 									<div class="ft">
 										<div class="J_photo_uploader photo-uploader">
@@ -156,7 +161,7 @@
 												<img src="order/picico.png"/>
 												<span class="tb-rate-ico-bg ico-img">晒照片</span>
 												<div class="file-input-wrapper" style="overflow: hidden; ">
-													<input type="file" id="uploadImg" name="picture" onchange="imgChange(this);" class="file-input" >
+													<input type="file" name="picture" onchange="imgChange(this);" class="file-input" >
 												</div>
 											</a>
 										</div>
@@ -167,62 +172,7 @@
 								
 							</div>
 						</li>
-						<li class="rate-box">
-							<div class="item-rate-info">
-								<div class="item-detail">
-									<a href="//trade.taobao.com/trade/detail/trade_snap.htm?trade_id=228568685124373804" target="_blank" class="item-d-img">
-										<img src="https://img.alicdn.com/bao/uploaded/i3/2552227184/TB1J33xbsnI8KJjSspeXXcwIpXa_!!0-item_pic.jpg_460x460.jpg" class="bookImg">
-									</a>
-									<div class="item-title">
-										<a href="#" target="_blank" >迪奥的时尚笔记克里斯汀·迪奥</a>
-									</div>
-								</div>
-							</div>
-							<div class="item-rate-main">
-								<div class="item-rate-act">
-									<div class="rate-control">
-										<ul>
-											<li class="good">
-												<label for="rate-good-228568685124373804">
-													<input type="radio" class="good-rate" name="grade2" value="1">
-													<img src="order/good.png" />
-												</label>
-											</li>
-											<li class="normal">
-												<label for="rate-normal-228568685124373804">
-													<input type="radio" class="noraml-rate" name="grade2" value="0">
-													<img src="order/normal.png" />
-												</label>
-											</li>
-											<li class="bad">
-												<label for="rate-bad-228568685124373804">
-													<input type="radio" class="bad-rate" name="grade2" value="-1">
-													<img src="order/bad.png" />
-												</label>
-											</li>
-										</ul>
-									</div>
-								</div>
-								<div class="rate-msg-box">
-									<div class="textinput">
-										<textarea class="rate-msg"></textarea>
-									</div>
-									<div class="ft">
-										<div class="J_photo_uploader photo-uploader">
-											<a class="J_btn upload-btn btn-chrome" >
-												<img src="order/picico.png"/><span class="tb-rate-ico-bg ico-img">晒照片</span>
-												<div class="file-input-wrapper" style="overflow: hidden;">
-													<input type="file" id="uploadImg2" name="picture" class="file-input" onchange="imgChange(this)">
-												</div>
-											</a>
-										</div>
-										<img id="imghead2"src="" style="width: 60px;height: 60px;visibility: hidden"><br>
-									</div>
-									<div style="clear: both;"></div>
-								</div>
-								
-							</div>
-						</li>
+						</c:forEach>
 					</ul>
 				</div>
 				<div style="clear: both;"></div>
@@ -232,6 +182,7 @@
 			<div class="submitbox">
 				<button type="submit" class="btn-primary">发表评论</button>
 			</div>
+		</form>
 		</div>
 		<!--底部-->
 		<div class="index_footer">
