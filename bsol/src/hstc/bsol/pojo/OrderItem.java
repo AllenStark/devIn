@@ -121,11 +121,23 @@ public class OrderItem {
 		this.evagrade = evagrade;
 	}
 
+	
+
+	public OrderItem(int orderid, long isbn, int orderitemcount, double subtotal) {
+		this.orderid = orderid;
+		this.isbn = isbn;
+		this.orderitemcount = orderitemcount;
+		this.subtotal = subtotal;
+	}
+
 	@Override
 	public String toString() {
 		return "OrderItem [orderid=" + orderid + ", isbn=" + isbn + ", orderitemcount=" + orderitemcount + ", subtotal="
 				+ subtotal + ", evastatus=" + evastatus + ", evacontent=" + evacontent + ", evadate=" + evadate
 				+ ", evaimg=" + evaimg + ", evagrade=" + evagrade + ",book=" + book + "]";
 	}
+
+	
+	
 
 }
