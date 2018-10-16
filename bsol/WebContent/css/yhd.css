@@ -13,7 +13,6 @@ ul li{
 .fr{float: right;}
 .fl{float: left;}
 .f12{font-size: 12px;}
-.f12 li{margin: 0px 0px 0px 10px;}
 .f14{font-size: 14px;}
 .f16{font-size: 16px;}
 .fb{font-weight: bold;}
@@ -637,7 +636,7 @@ ul li{
 }
 .index_footer_1st ul li>p{color: #666666;height: 30px;line-height: 30px;}
 /*搴曢儴绗簩閮ㄥ垎*/
-.index_footer_2nd{padding: 20px 69px; margin: 0px 0px 0px 170px;}
+.index_footer_2nd{padding: 20px 69px;}
 .index_footer_2nd>ul{width: 160px;}
 .index_footer_2nd ul li{font-size: 12px;line-height: 25px;}
 .index_footer_2nd ul li b{font-size: 14px;line-height: 40px;}
@@ -994,6 +993,18 @@ ul li{
 	padding: 10px 10px;
 	
 }
+.cart_contents{
+	width: 1200px;
+	margin: 0 auto;
+	font-size: 16px;
+	padding-top: 40px;
+}
+.cart_content{
+	width: 500px;
+	margin: 0 auto;
+	font-size: 16px;
+	padding-top: 50px;
+}
 .cart_R>input{
 	width: 270px;
 	height: 30px;
@@ -1002,12 +1013,6 @@ ul li{
 	color: #757575;
 	padding-left: 10px;
 	background:#fcfbfb url(../images/_search.png)no-repeat 245px 6px;
-}
-.cart_content{
-	width: 500px;
-	margin: 0 auto;
-	font-size: 16px;
-	padding-top: 120px;
 }
 .cart_content>div{
 	padding-top: 20px;
