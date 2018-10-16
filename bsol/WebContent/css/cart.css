@@ -213,7 +213,15 @@ a:hover{
     border-left-color: transparent;
     right: 0;
 }
-
+.amount_mess{
+	margin-top: 10px;
+	width: 80px;
+	text-align: center;
+}
+.book_stocks{
+	color: red;
+	font-size: 14px;
+}
 
 .order_lists .list_sum{
     width: 140px;

@@ -93,20 +93,20 @@ a:hover{
     margin-left: 80px;
 }
 .cartMain_hd .cartTop .list_con{
-    width: 480px;
-    text-indent: 140px;
+    width: 540px;
+    text-indent: 200px;
 }
 .cartMain_hd .cartTop .list_op{
     padding: 0;
     text-indent: 15px;
 }
 .cartMain_hd .list_status{
-	margin-left: 60px;
+	margin-left: 40px;
     width: 80px;
 }
 .cartMain_hd .list_op{
-	margin-left: 60px;
-    width: 120px;
+	margin-left: 40px;
+    width: 80px;
 }
 .order_page{
 	height: 50px;
@@ -126,7 +126,7 @@ a:hover{
 	border: 1px solid red;
 }
 .one_order{
- 	margin-bottom: 20px;
+ 	margin-top: 30px;
 	height: auto;
 	border: 1px #e6e8ea solid;
 	width: 1200px;
@@ -179,18 +179,19 @@ a:hover{
 	color: grey;
 	font-size: 14px;
 	background-color: white;
-	height: 60px;
-	width: 200px;
+	height: auto;
+	width: 250px;
 	line-height: 30px;
 	margin: 5px;
 	border: 1px grey solid;
+	text-align: left;
 }
 .one_order tr td{
 	border-right: 1px #e6e8ea solid;
 	border-bottom: 1px #e6e8ea solid;
 }
 .product{
-	width: 720px;
+	width: 1200px;
 }
 .porduct_img{
 	width: 100px;
@@ -203,14 +204,14 @@ a:hover{
     vertical-align: top;
 }
 .porduct_text{
-	margin: 30px 0 0 0px;
+	margin: 35px 0 0 20px;
     line-height: 18px;
-    width: 200px;
+    width: 300px;
     float: left;
 }
 .porduct_price{
 	float: left;
-	margin: 50px 0 10px 140px;
+	margin: 50px 0 10px 80px;
     line-height: 18px;
     font-family: Verdana,Tahoma,arial;
     color: #3c3c3c;
@@ -225,29 +226,47 @@ a:hover{
     text-align: center;
     background-color: #fff;
 }
+.porduct_subtotal{
+	float: left;
+	width: 80px;
+	margin: 50px 0 10px 20px;
+    height: 60px;
+    color: #343434;
+    text-align: center;
+    background-color: #fff;
+}
+.porduct_sum_op{
+	height: 50px;
+}
 .porduct_sum{
-	width: 90px;
+	width: 200px;
     font-family: Verdana,Tahoma,arial;
     color: #ff0000;
     font-weight: bold;
-    margin-left: 30px;
-    margin-top: 0 ;
+    margin-right: 0px;
+    float: right;
+    line-height:50px;
+    text-align: center;
 }
 .porduct_status_op{
 	width: 90px;
-	margin-left: 30px;
-	margin-top: 0;
+	margin-right: 30px;
+	float: right;
+	line-height:50px;
+	text-align: center;
 }
 .porduct_op{
 	width: 90px;
 	line-height: 20px;
 	width: 100px;
-	margin-left: 40px;
-	margin-top: 0;
+	margin-right: 40px;
+	float: right;
+	line-height:50px;
+	text-align: center;
 }
-.delete_confirm{
+/* .delete_confirm{
 	float: right;
 	line-height: 40px;
 	width: 100px;
 	margin-left: 30px;
-}
+} */
