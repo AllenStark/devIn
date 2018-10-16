@@ -94,11 +94,13 @@
 				                        <p class="price">${cart.getBook().getPrice()}</p>
 				                    </li>
 				                    <li class="list_amount">
+				                    <input type="hidden" name="stocks" value="${cart.getBook().getStocks()}">
 				                        <div class="amount_box">
 				                            <a href="javascript:;" class="reduce reSty">-</a>
 				                            <input type="text" value="${cart.cartitemcount}" class="sum">
 				                            <a href="javascript:;" class="plus">+</a>
 				                        </div>
+				                        <div class="amount_mess"><span class="book_stocks"></span></div>
 				                    </li>
 				                    <li class="list_sum">
 				                        <p class="sum_price">￥${cart.getSubtotal()}</p>
