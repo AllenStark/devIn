@@ -18,4 +18,10 @@ public interface OrderitemDao {
 	 * @return
 	 */
 	public boolean updateEvaluation(OrderItem orderitem);
+	/**
+	 * 插入订单项纪录
+	 * @param orderitem
+	 * @return
+	 */
+	public boolean insertOrderitem(OrderItem orderitem);
 }
