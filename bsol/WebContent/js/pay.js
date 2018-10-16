@@ -29,5 +29,15 @@ $(document).ready(function(){
 			$(this).next().focus();
 		}
 	});
+	$("#lightPayForm").submit(function(){
+		var pwd = $(".password");
+		for(var i=0;i<pwd.length;i++){
+			if(pwd.eq(i).val()==""||pwd.eq(i).val()==null){
+				alert("请输入完整密码!");
+				return false;
+			}
+		}
+		return true;
+	});
 	
 })

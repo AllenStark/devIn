@@ -46,7 +46,7 @@ $(document).ready(function(){
 		}
 	});
 	$("#checkoutForm").submit(function(){
-		if($("#phone").val()==""||$("#consignee").val()==""){
+		if($("#phone").val()==""||$("#consignee").val()==""||$("#detailedAddr").val()==""){
 			alert("请将收货信息填写完整!");
 			return false;
 		}else{
