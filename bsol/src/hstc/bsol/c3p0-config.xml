@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<c3p0-config>
+	<!-- 加载数据源配置文件 -->
+	<default-config>
+		<property name="jdbcUrl">
+			<!-- xml中的转义符号 -->
+			<![CDATA[
+				jdbc:mysql://112.74.33.67:3306/bsol?useUnicode=true&characterEncoding=utf-8&useSSL=true
+			]]>
+		</property>
+		<property name="driverClass">
+			com.mysql.jdbc.Driver
+		</property>
+		<property name="user">root</property>
+		<property name="password">Aa.Zz123</property>
+
+	</default-config>
+</c3p0-config>
