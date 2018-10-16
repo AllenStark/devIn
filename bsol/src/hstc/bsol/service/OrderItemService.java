@@ -25,4 +25,12 @@ public class OrderItemService {
 	public boolean updateEvaluation(OrderItem orderitem) {
 		return orderItemDao.updateEvaluation(orderitem);
 	}
+	/**
+	 * 插入订单项纪录
+	 * @param orderitem
+	 * @return
+	 */
+	public boolean insertOrderitem(OrderItem orderitem) {
+		return orderItemDao.insertOrderitem(orderitem);
+	}
 }
