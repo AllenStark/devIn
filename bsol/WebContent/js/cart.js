@@ -73,41 +73,46 @@ $(function () {
         $userid = $("#userid").val();
     $plus.click(function () {
         var $inputVal = $(this).prev('input'),
+        	$stocksMess = $(this).parents('.order_lists').find('.book_stocks'),
             $count = parseInt($inputVal.val())+1,
-            /*$obj = $(this).parents('.amount_box').find('.reduce'),*/
+            $stocks = $(this).parents('.order_lists').find("input[name='stocks']").val(),//库存量
             $priceTotalObj = $(this).parents('.order_lists').find('.sum_price'),
             $price = $(this).parents('.order_lists').find('.price').html(),  //单价
             $priceTotal = $count*parseFloat($price),
             $isbn = $(this).parents('.order_lists').find(".son_check").val();
         /*ajax实现点击增加数量*/
-        $.ajax({
-			url:"CartItemServlet?method=chgCartCount",
-			type:"get",
-			data:"userid="+$userid+"&isbn="+$isbn+"&count="+$count,
-			success:function(result){
-				if($.trim(result) == "true"){
-					/*alert("数量增加成功!");*/
-					$inputVal.val($count);
-			        $priceTotalObj.html('￥'+$priceTotal);
-				}else{
-					alert("修改失败!");
-					return ;
-				}
-			},
-			error:function(){
-				alert("数量修改出错!");
-				return;
-			}
-		});
+        if($stocks-$count >= 0){
+        	$.ajax({
+    			url:"CartItemServlet?method=chgCartCount",
+    			type:"get",
+    			data:"userid="+$userid+"&isbn="+$isbn+"&count="+$count,
+    			success:function(result){
+    				if($.trim(result) == "true"){
+    					$inputVal.val($count);
+    			        $priceTotalObj.html('￥'+$priceTotal);
+    				}else{
+    					alert("修改失败!");
+    					return ;
+    				}
+    			},
+    			error:function(){
+    				alert("数量修改出错!");
+    				return;
+    			}
+    		});
+        }
+        else{
+        	$stocksMess.text('库存紧张');
+        }
         
         if($inputVal.val()>1 && $obj.hasClass('reSty')){
             $obj.removeClass('reSty');
         }
-        /*totalMoney();*/
     });
 
     $reduce.click(function () {
         var $inputVal = $(this).next('input'),
+        	$stocksMess = $(this).parents('.order_lists').find('.book_stocks'),
             $count = parseInt($inputVal.val())-1,
             $priceTotalObj = $(this).parents('.order_lists').find('.sum_price'),
             $price = $(this).parents('.order_lists').find('.price').html(),  //单价
@@ -122,7 +127,7 @@ $(function () {
     			data:"userid="+$userid+"&isbn="+$isbn+"&count="+$count,
     			success:function(result){
     				if($.trim(result) == "true"){
-    					/*alert("数量减少成功!");*/
+    					$stocksMess.text('');
     					$inputVal.val($count);
     		            $priceTotalObj.html('￥'+$priceTotal);
     				}else{
@@ -139,7 +144,6 @@ $(function () {
         if($inputVal.val()==1 && !$(this).hasClass('reSty')){
             $(this).addClass('reSty');
         }
-        /*totalMoney();*/
     });
     var $chgCount=0;
     $all_sum.click(function(){
@@ -150,6 +154,8 @@ $(function () {
         var $priceTotalObj = $(this).parents('.order_lists').find('.sum_price'),
             $price = $(this).parents('.order_lists').find('.price').html(),  //单价
             $priceTotal = 0,
+            $stocks = $(this).parents('.order_lists').find("input[name='stocks']").val(),//库存量
+            $stocksMess = $(this).parents('.order_lists').find('.book_stocks'),
             $isbn = $(this).parents('.order_lists').find(".son_check").val(),
             $newCount = $(this).val();
         if($newCount=='' || $newCount==0){
@@ -161,26 +167,30 @@ $(function () {
         }
         $count = $(this).val();
         $priceTotal = $count*$price;
-        $.ajax({
-			url:"CartItemServlet?method=chgCartCount",
-			type:"get",
-			data:"userid="+$userid+"&isbn="+$isbn+"&count="+$count,
-			success:function(result){
-				if($.trim(result) == "true"){
-					/*alert("修改数量成功!");*/
-					/*$inputVal.val($count);*/
-		            $priceTotalObj.html('￥'+$priceTotal);
-				}else{
-					alert("修改失败!");
-					return ;
-				}
-			},
-			error:function(){
-				alert("修改出错!");
-				return;
-			}
-		});
-        /*totalMoney();*/
+        if($stocks-$count>=0){
+        	$.ajax({
+    			url:"CartItemServlet?method=chgCartCount",
+    			type:"get",
+    			data:"userid="+$userid+"&isbn="+$isbn+"&count="+$count,
+    			success:function(result){
+    				if($.trim(result) == "true"){
+    					$stocksMess.text('');
+    		            $priceTotalObj.html('￥'+$priceTotal);
+    				}else{
+    					alert("修改失败!");
+    					return ;
+    				}
+    			},
+    			error:function(){
+    				alert("修改出错!");
+    				return;
+    			}
+    		});
+        }
+        else{
+        	alert("库存不够!");
+        	$(this).val($stocks);
+        }
     });
     //======================================总计==========================================
     function totalMoney() {
