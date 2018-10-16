@@ -104,15 +104,37 @@ function remindShipment(orderNum){
 	alert("您已提醒商家发货!");
 	/*alert(orderNum);*/
 }
+/*取消订单*/
+function cancleOrder(orderNum){
+	var message = window.confirm("您确定要取消此订单?");
+	if(message){
+		window.location.href = "OrdersServlet?method=cancleOrder&orderNum="+orderNum;
+	}
+}
 /*删除订单*/
 function deleteOrder(orderNum){
-	var message = window.confirm("确定删除此商品?");
+	var message = window.confirm("您确定要删除此订单?");
 	if(message){
-		
+		window.location.href = "OrdersServlet?method=deleteOrder&orderNum="+orderNum;
 	}
 }
 /*确认收货*/
 function confirmReceipt(orderNum){
-	alert("您已确认收货!");
-	window.location.href="evalute.jsp";
+	$.ajax({
+		url:"OrdersServlet",
+		type:"get",
+		data:"method=chgOrderstatusToConfirmReceipt&orderNum="+orderNum,
+		success:function(result){
+			if($.trim(result) == "true"){
+				alert("您已确认收货!");
+				window.location.href="evaluateServlet?method=enterEvaluate&orderid="+orderNum;
+			}
+			else{
+				alert("确认收货失败!");
+			}
+		},
+		error:function(){
+			alert("检测失败!");
+		}
+	});
 }
