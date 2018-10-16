@@ -23,4 +23,11 @@ public class OrderitemDaoImpl implements OrderitemDao {
 		return DbUtil.executeUpdate(sql, obj);
 	}
 
+	@Override
+	public boolean insertOrderitem(OrderItem orderitem) {
+		String sql = "insert into orderitem(orderid,isbn,orderitemcount,subtotal,evastatus) values(?,?,?,?,0)";
+		Object[] obj = {orderitem.getOrderid(),orderitem.getIsbn(),orderitem.getOrderitemcount(),orderitem.getSubtotal()};
+		return DbUtil.executeUpdate(sql, obj);
+	}
+
 }
