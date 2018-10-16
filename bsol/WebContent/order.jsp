@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -55,23 +56,22 @@
 					<img src="images/logo.png"/>
 				</div>
 				<div class="index_content1_M fl">
-					<input type="text" placeholder="请输入关键字" />
-					<input type="button" name="search" id="" value="搜索" />
+					<input type="text" placeholder="请输入关键字" /><input type="button" name="search" id="" value="搜索" />
+					
 				</div>
 				<div class="index_content1_R">
-					<a href="cart.jsp">购物车</a>
+					<a href="CartItemServlet?method=selectCartItemList">购物车</a>
 				</div>
-				<!-- <div class="clear"></div> -->
 	
 			</div>
 		</div>	
 		<!-- 订单头部 -->
 		<div class="order_header" >
 				<div class="order_header_order"><span class="order_header_order_text">所有订单</span></div>
-				<div class="order_header_pay"><span class="order_header_pay_text">待付款</span>&nbsp;<span id="pay_count">1</span></div>
-				<div class="order_header_consignment"><span class="order_header_consignment_text">待发货</span>&nbsp;<span id="consignment_count">1</span></div>
-				<div class="order_header_receipt"><span class="order_header_receipt_text">待收货</span>&nbsp;<span id="receipt_count">1</span></div>
-				<div class="order_header_evaluate"><span class="order_header_evaluate_text">待评价</span>&nbsp;<span id="evaluate_count">1</span></div>
+				<div class="order_header_pay"><span class="order_header_pay_text">待付款</span>&nbsp;<span id="pay_count">${listCount.get(0) }</span></div>
+				<div class="order_header_consignment"><span class="order_header_consignment_text">待发货</span>&nbsp;<span id="consignment_count">${listCount.get(1) }</span></div>
+				<div class="order_header_receipt"><span class="order_header_receipt_text">待收货</span>&nbsp;<span id="receipt_count">${listCount.get(2) }</span></div>
+				<div class="order_header_evaluate"><span class="order_header_evaluate_text">待评价</span>&nbsp;<span id="evaluate_count">${listCount.get(3) }</span></div>
 
 		</div>
 		<!-- 所有订单 -->
@@ -89,124 +89,112 @@
 			        </div>
 			        <div class="order_page">
 			        	<div>
-			        		<input type="button" id="lastPage" value="上一页">
-			        		<input type="button" id="nextPage" value="下一页">
+			        		<c:if test="${pageBean.currentPageNo eq 1 }">
+			        			<a id="upPage" href="javascript:;">上一页</a>
+			        		</c:if>
+			        		<c:if test="${pageBean.currentPageNo gt 1 }">
+			        			<a id="upPage" href="OrdersServlet?method=queryAllOrders&currentPageNo=${pageBean.upPageNo }">上一页</a>
+			        		</c:if>
+			        		<c:if test="${pageBean.currentPageNo eq pageBean.totalPageCount }">
+			        			<a id="nextPage" href="javascript:;">下一页</a>
+			        		</c:if>
+			        		<c:if test="${pageBean.currentPageNo lt pageBean.totalPageCount }">
+			        			<a id="nextPage" href="OrdersServlet?method=queryAllOrders&currentPageNo=${pageBean.nextPageNo }">下一页</a>
+			        		</c:if>
+			        		<%-- <a id="upPage" href="OrdersServlet?method=queryAllOrders&currentPageNo=${pageBean.upPageNo }">上一页</a> --%>
+			        		<%-- <a id="nextPage" href="OrdersServlet?method=queryAllOrders&currentPageNo=${pageBean.nextPageNo }">下一页</a> --%>
 			        	</div>
 			        </div>
-
-			    	<table class="one_order" cellspacing="0">
-				    	<tr class="order">
-				    		<th colspan="4">
-				    			<div class="order_message">
-				    				<span class="order_time">2018-10-08 23:20:55</span>
-				    				<span class="order_num">订单号:&nbsp;</span>
-				    				<span class="order_num_text">0423507212341</span>
-				    				<span class="list_sum">￥ 50.8</span>
-				    			</div>
-				    			<div class="address_position">
-					    			<div class="address">
-					                		<span class="address_name">零一</span>
-					                		<div class="dropdown_iron"></div> 
-					                </div>
-					                <div class="address_detail">
-					                		<span>广东省广州市南沙科技咨询园</span><br>
-					                		<span>电话:&nbsp;12345566781</span>
+					<c:if test="${!empty(pageBean.list) }">
+						<c:forEach var="orders" items="${pageBean.list}">
+						<table class="one_order" cellspacing="0">
+					    	<tr class="order">
+					    		<th colspan="4">
+					    			<div class="order_message">
+					    				<span class="order_time">${orders.chgdate }</span>
+					    				<span class="order_num">订单号:&nbsp;</span>
+					    				<span class="order_num_text">${orders.orderid}</span>
+					    				<span class="list_sum">￥${orders.total}</span>
+					    			</div>
+					    			<div class="address_position">
+						    			<div class="address">
+						                		<span class="address_name">${orders.consignee}</span>
+						                		<div class="dropdown_iron"></div> 
+						                </div>
+						                <div class="address_detail">
+						                		<span>${orders.address}</span><br>
+						                		<span>电话:&nbsp;${orders.phone}</span>
+						              	</div>
 					              	</div>
-				              	</div>
-				              	<!-- <div class="delete_some"><a href="javascript:;" class="delete_confirm" onclick="deleteOrder('orderNum')">删除订单</a></div> -->
-				    		</th>		    		
-				    	</tr>
-				    	<tr>
-				    		<td class="product">
-				    			<div class="porduct_img"><a href="javascript:;"><img src="images/1.png" alt=""></a></div>
-				            	<div class="porduct_text"><a href="javascript:;">夏季男士迷彩无袖T恤圆领潮流韩版修身男装背心青年时尚打底衫男</a></div>
-				            	<div class="porduct_price"><p>￥<span>980</span></p></div>
-				            	<div class="porduct_amount"><span>1</span></div>
-				            </td>
-				            <td rowspan="3">
-				            	<div class="porduct_sum"><span>￥<span>18000.00</span></span></div>
-				            </td>
-				            <td rowspan="3">
-				            	<p class="porduct_status_op">待付款</p>
-				            </td>
-				            <td rowspan="3">
-				            	<div class="porduct_op">
-					            	<p class="porduct_del"><a href="pay.jsp">支付</a></p>
-					                <a href="javascript:;" onclick="deleteOrder('orderNum')">删除订单</a>
-				                </div>
-				            </td>
-				    	</tr>
-				    	<tr>
-				    		<td class="product">
-				    			<div class="porduct_img"><a href="javascript:;"><img src="images/1.png" alt=""></a></div>
-				            	<div class="porduct_text"><a href="javascript:;">夏季男士迷彩无袖T恤圆领潮流韩版修身男装背心青年时尚打底衫男</a></div>
-				            	<div class="porduct_price"><p>￥<span>980</span></p></div>
-				            	<div class="porduct_amount"><span>1</span></div>
-				            </td>
-				    	</tr>
-				    	<tr>
-				    		<td class="product">
-				    			<div class="porduct_img"><a href="javascript:;"><img src="images/1.png" alt=""></a></div>
-				            	<div class="porduct_text"><a href="javascript:;">夏季男士迷彩无袖T恤圆领潮流韩版修身男装背心青年时尚打底衫男</a></div>
-				            	<div class="porduct_price"><p>￥980</p></div>
-				            	<div class="porduct_amount"><span>1</span></div>
-				            </td>
-				    	</tr>
-				    </table>
-				    <!-- 已评价 -->
-				    <table class="one_order" cellspacing="0">
-				    	<tr class="order">
-				    		<th colspan="4">
-				    			<div class="order_message">
-				    				<span class="order_time">2018-10-08 23:20:55</span>
-				    				<span class="order_num">订单号:&nbsp;</span>
-				    				<span class="order_num_text">123456212341</span><span class="list_sum">￥ 50.8</span>
-				    			</div>
-				    			<div class="address_position">
-				    				<div class="address">
-				                		<span class="address_name">走吧</span>
-				                		<div class="dropdown_iron"></div> 
-					                </div>
-					                <div class="address_detail">
-					                		<span>广东省湛江市麻章区</span><br>
-					                		<span>电话:&nbsp;12345566781</span>
-					              	</div>
-				    			</div>
-				              	<!-- <div class="delete_some"><a href="javascript:;" class="delete_confirm" onclick="deleteOrder('orderNum')">删除订单</a></div> -->
-				    		</th>		    		
-				    	</tr>
-				    	<tr>
-				    		<td class="product">
-				    			<div class="porduct_img"><a href="javascript:;"><img src="images/1.png" alt=""></a></div>
-				            	<div class="porduct_text"><a href="javascript:;">夏季男士迷彩无袖T恤圆领潮流韩版修身男装背心青年时尚打底衫男</a></div>
-				            	<div class="porduct_price"><p>￥980</p></div>
-				            	<div class="porduct_amount"><span>1</span></div>
-				            </td>
-				            <td rowspan="3">
-				            	<div class="porduct_sum"><span>￥18000.00</span></div>
-				            </td>
-				            <td rowspan="3">
-				            	<p class="porduct_status_op">已评价</p>
-				            </td>
-				            <td rowspan="3">
-				            	<div class="porduct_op">
-					            	<a href="javascript:;" onclick="deleteOrder('orderNum')">删除订单</a>
-				                </div>
-				            </td>
-				    	</tr>
-				    </table>
-				    
-				    <div class="cart_content">
-						<p class="fl"><img src="images/cart_yhd.png"/></p>
-						<div class="fl">
-							<p>购物车还是空的呢，快去采购吧~</p>
-							<p>或者登录查看之前加入的商品。</p>
-							<p><input type="button" name="" id="" value="登录" /><input type="button" name="" id="" value="去逛逛" /></p>
-						</div>
-					</div>	
-			    </section>				
+					    		</th>		    		
+					    	</tr>
+					    	<c:forEach var="orderItem" items="${orders.getOrderItemList()}">
+					    		<tr class="product">
+						    		<td>
+						    			<div class="porduct_img"><a href="javascript:;"><img src="images/1.png" alt=""></a></div>
+						            	<div class="porduct_text"><a href="javascript:;">${orderItem.getBook().getBookname() }</a></div>
+						            	<div class="porduct_price"><p>￥<span>${orderItem.getBook().getPrice() }</span></p></div>
+						            	<div class="porduct_amount"><span>${orderItem.orderitemcount }</span></div>
+						            	<div class="porduct_subtotal"><span>${orderItem.subtotal }</span></div>
+						            </td>
+						    	</tr>
+					    	</c:forEach>
+					    	<tr class="porduct_sum_op">
+				    			<td>
+				    			<c:choose>
+				    				<c:when test="${orders.orderstatus eq 1 }">
+						            	<div class="porduct_op">
+							            	<a href="payServlet?method=payEnter&orderid=${orders.orderid}">支付</a>
+							            	<a href="javascript:;" onclick="cancleOrder(${orders.orderid})">|&nbsp;取消订单</a>
+						                </div>
+						                <div class="porduct_status_op">待付款</div>
+					                </c:when>
+					                <c:when test="${orders.orderstatus eq 2 }">
+						            	<div class="porduct_op">
+							            	<a href="javascript:void(o)" class="delBtn" name="remind_shipment" onclick="remindShipment('orderNum')">提醒发货</a>
+						                </div>
+					                	<div class="porduct_status_op">待发货</div>
+					                </c:when>
+					                <c:when test="${orders.orderstatus eq 3 }">
+					                	<div class="porduct_op">
+					                		<a href="javascript:;" onclick="confirmReceipt(${orders.orderid})">确认收货</a>
+					                	</div>
+					                	<div class="porduct_status_op">待收货</div>
+					                </c:when >
+					                <c:when test="${orders.orderstatus eq 4 }">
+					                	<c:if test="${orders.getOrderItemList().get(0).getEvastatus() eq 0 }">
+					                		<div class="porduct_op">
+						                		<a href="evaluateServlet?method=enterEvaluate&orderid=${orders.orderid}" class="delBtn">评价</a>
+						                	</div>
+						                	<div class="porduct_status_op">待评价</div>
+					                	</c:if>
+					                	<c:if test="${orders.getOrderItemList().get(0).getEvastatus() eq 1 }">
+					                		<div class="porduct_op">
+						                		<a href="javascript:;" onclick="deleteOrder(${orders.orderid})">&nbsp;删除订单</a>
+						                	</div>
+						                	<div class="porduct_status_op">已评价</div>
+					                	</c:if>
+					                </c:when>
+					             </c:choose>
+					                <div class="porduct_sum"><span>总计:&nbsp;￥<span>${orders.total }</span></span></div>
+					            </td>
+					    	</tr>
+					    </table>
+					</c:forEach>
+					
+					</c:if>
+			    	
+				    <c:if test="${empty(pageBean.list) }">
+					    <div class="cart_content">
+							<p class="fl"><img src="images/cart_yhd.png"/></p>
+							<div class="fl">
+								<p>订单还是空的呢，快去下单吧~</p>
+								<p>或者查看购物车加入的商品。</p>				
+							</div>
+						</div>	
+					</c:if>
+			   </section>				
 		</div>
-		
 		<!-- 待付款 -->
 		<div class="cart_contents" id="order_pay">
 				<section class="cartMain">
@@ -220,64 +208,74 @@
 			                <li class="list_op">交易操作</li>
 			            </ul>
 			        </div>
-			        <div class="order_page">
+			        <!-- <div class="order_page">
 			        	<div>
 			        		<input type="button" id="lastPage" value="上一页">
 			        		<input type="button" id="nextPage" value="下一页">
 			        	</div>
-			        </div>
-
-			    	<table class="one_order" cellspacing="0">
-				    	<tr class="order">
-				    		<th colspan="4">
-				    			<div class="order_message">
-				    				<span class="order_time">2018-10-09 09:20:55</span>
-				    				<span class="order_num">订单号:&nbsp;</span>
-				    				<span class="order_num_text">0423507212341</span><span class="list_sum">￥ 50.8</span>
-				    			</div>
-				    			<div class="address_position">
-					    			<div class="address">
-					                		<span class="address_name">大傻逼</span>
-					                		<div class="dropdown_iron"></div> 
-					                </div>
-					                <div class="address_detail">
-					                		<span>广东省广州市天河区天河又一城</span><br>
-					                		<span>电话:&nbsp;18659066781</span>
-					              	</div>
-					            </div>
-				    		</th>		    		
-				    	</tr>
-				    	<tr>
-				    		<td class="product">
-				    			<div class="porduct_img"><a href="javascript:;"><img src="images/1.png" alt=""></a></div>
-				            	<div class="porduct_text"><a href="javascript:;">夏季男士迷彩无袖T恤圆领潮流韩版修身男装背心青年时尚打底衫男</a></div>
-				            	<div class="porduct_price"><p>￥980</p></div>
-				            	<div class="porduct_amount"><span>1</span></div>
-				            </td>
-				            <td rowspan="3">
-				            	<div class="porduct_sum"><span>￥980.00</span></div>
-				            </td>
-				            <td rowspan="3">
-				            	<p class="porduct_status_op">待付款</p>
-				            </td>
-				            <td rowspan="3">
-				            	<div class="porduct_op">
-					            	<p class="porduct_del"><a href="pay.jsp" class="delBtn">支付</a></p>
-					                <a href="javascript:;" onclick="deleteOrder('orderNum')">删除订单</a>
-				                </div>
-				            </td>
-				    	</tr>
-				    </table>
-				    
-				    <div class="cart_content">
-					<p class="fl"><img src="images/cart_yhd.png"/></p>
-					<div class="fl">
-						<p>购物车还是空的呢，快去采购吧~</p>
-						<p>或者登录查看之前加入的商品。</p>
-						<p><input type="button" name="" id="" value="登录" /><input type="button" name="" id="" value="去逛逛" /></p>
-					</div>
-		</div>	
-			    </section>				
+			        </div> -->
+				<c:if test="${!empty(ordersList) }">
+					<c:forEach var="orders" items="${ordersList }">
+						<c:if test="${orders.orderstatus eq 1 }">
+					    	<table class="one_order" cellspacing="0">
+						    	<tr class="order">
+						    		<th colspan="4">
+						    			<div class="order_message">
+						    				<span class="order_time">${orders.chgdate }</span>
+						    				<span class="order_num">订单号:&nbsp;</span>
+						    				<span class="order_num_text">${orders.orderid}</span>
+						    				<span class="list_sum">￥${orders.total}</span>
+						    			</div>
+						    			<div class="address_position">
+							    			<div class="address">
+							                		<span class="address_name">${orders.consignee}</span>
+							                		<div class="dropdown_iron"></div> 
+							                </div>
+							                <div class="address_detail">
+							                		<span>${orders.address}</span><br>
+							                		<span>电话:&nbsp;${orders.phone}</span>
+							              	</div>
+						              	</div>
+						    		</th>		    		
+						    	</tr>
+						    	<c:forEach var="orderItem" items="${orders.getOrderItemList()}">
+						    		<tr class="product">
+							    		<td>
+							    			<div class="porduct_img"><a href="javascript:;"><img src="images/1.png" alt=""></a></div>
+							            	<div class="porduct_text"><a href="javascript:;">${orderItem.getBook().getBookname() }</a></div>
+							            	<div class="porduct_price"><p>￥<span>${orderItem.getBook().getPrice() }</span></p></div>
+							            	<div class="porduct_amount"><span>${orderItem.orderitemcount }</span></div>
+							            	<div class="porduct_subtotal"><span>${orderItem.subtotal }</span></div>
+							            </td>
+							    	</tr>
+						    	</c:forEach>
+						    	<tr class="porduct_sum_op">
+					    			<td>
+						            	<div class="porduct_op">
+							            	<a href="payServlet?method=payEnter&orderid=${orders.orderid}">支付</a>
+							            	<a href="javascript:;" onclick="cancleOrder(${orders.orderid})">|&nbsp;取消订单</a>
+						                </div>
+						                <div class="porduct_status_op">待付款</div>
+					                	<div class="porduct_sum"><span>总计:&nbsp;￥<span>${orders.total }</span></span></div>
+						            </td>
+						    	</tr>
+						    </table>
+						 </c:if>
+						 
+						 
+					</c:forEach>
+					<c:if test="${listCount.get(0) eq 0 }">
+					    <div class="cart_content">
+							<p class="fl"><img src="images/cart_yhd.png"/></p>
+							<div class="fl">
+								<p>没有符合条件的宝贝</p>
+								<p>请尝试其他搜索条件</p>
+							</div>
+						</div>	
+					</c:if>
+				</c:if>
+				
+			</section>				
 		</div>
 		<!-- 待发货 -->
 		<div class="cart_contents" id="order_consignment">
@@ -292,64 +290,71 @@
 			                <li class="list_op">交易操作</li>
 			            </ul>
 			        </div>
-			        <div class="order_page">
+			<!--         <div class="order_page">
 			        	<div>
 			        		<input type="button" id="lastPage" value="上一页">
 			        		<input type="button" id="nextPage" value="下一页">
 			        	</div>
-			        </div>
-
-			    	<table class="one_order" cellspacing="0">
-				    	<tr class="order">
-				    		<th colspan="4">
-				    			<div class="order_message">
-				    				<span class="order_time">2018-10-08 23:20:55</span>
-				    				<span class="order_num">订单号:&nbsp;</span>
-				    				<span class="order_num_text">0423507212341</span><span class="list_sum">￥ 50.8</span>
-				    			</div>
-				    			<div class="address_position">
-					    			<div class="address">
-					                		<span class="address_name">去死吧</span>
-					                		<div class="dropdown_iron"></div> 
-					                </div>
-					                <div class="address_detail">
-					                		<span>广东省潮州</span><br>
-					                		<span>电话:&nbsp;12345566781</span>
-					              	</div>
-					             </div>
-				    		</th>		    		
-				    	</tr>
-				    	<tr>
-				    		<td class="product">
-				    			<div class="porduct_img"><a href="javascript:;"><img src="images/1.png" alt=""></a></div>
-				            	<div class="porduct_text"><a href="javascript:;">夏季男士迷彩无袖T恤圆领潮流韩版修身男装背心青年时尚打底衫男</a></div>
-				            	<div class="porduct_price"><p>￥980</p></div>
-				            	<div class="porduct_amount"><span>1</span></div>
-				            </td>
-				            <td rowspan="3">
-				            	<div class="porduct_sum"><span>￥18000.00</span></div>
-				            </td>
-				            <td rowspan="3">
-				            	<p class="porduct_status_op">待发货</p>
-				            </td>
-				            <td rowspan="3">
-				            	<div class="porduct_op">
-					            	<a href="javascript:void(o)" class="delBtn" name="remind_shipment" onclick="remindShipment('orderNum')">提醒发货</a>
-				                </div>
-				            </td>
-				    	</tr>
-				    </table>
-				    
-				    
-				    <div class="cart_content">
-						<p class="fl"><img src="images/cart_yhd.png"/></p>
-						<div class="fl">
-							<p>购物车还是空的呢，快去采购吧~</p>
-							<p>或者登录查看之前加入的商品。</p>
-							<p><input type="button" name="" id="" value="登录" /><input type="button" name="" id="" value="去逛逛" /></p>
-						</div>
-					</div>	
-			    </section>				
+			        </div> -->
+					
+				<c:if test="${!empty(ordersList) }">
+					 <c:forEach var="orders" items="${ordersList }">
+						<c:if test="${orders.orderstatus eq 2 }">
+					    	<table class="one_order" cellspacing="0">
+						    	<tr class="order">
+						    		<th colspan="4">
+						    			<div class="order_message">
+						    				<span class="order_time">${orders.chgdate }</span>
+						    				<span class="order_num">订单号:&nbsp;</span>
+						    				<span class="order_num_text">${orders.orderid}</span>
+						    				<span class="list_sum">￥${orders.total}</span>
+						    			</div>
+						    			<div class="address_position">
+							    			<div class="address">
+							                		<span class="address_name">${orders.consignee}</span>
+							                		<div class="dropdown_iron"></div> 
+							                </div>
+							                <div class="address_detail">
+							                		<span>${orders.address}</span><br>
+							                		<span>电话:&nbsp;${orders.phone}</span>
+							              	</div>
+						              	</div>
+						    		</th>		    		
+						    	</tr>
+						    	<c:forEach var="orderItem" items="${orders.getOrderItemList()}">
+						    		<tr class="product">
+							    		<td>
+							    			<div class="porduct_img"><a href="javascript:;"><img src="images/1.png" alt=""></a></div>
+							            	<div class="porduct_text"><a href="javascript:;">${orderItem.getBook().getBookname() }</a></div>
+							            	<div class="porduct_price"><p>￥<span>${orderItem.getBook().getPrice() }</span></p></div>
+							            	<div class="porduct_amount"><span>${orderItem.orderitemcount }</span></div>
+							            	<div class="porduct_subtotal"><span>${orderItem.subtotal }</span></div>
+							            </td>
+							    	</tr>
+						    	</c:forEach>
+						    	<tr class="porduct_sum_op">
+					    			<td>
+						            	<div class="porduct_op">
+							            	<a href="javascript:void(o)" class="delBtn" name="remind_shipment" onclick="remindShipment('orderNum')">提醒发货</a>
+						                </div>
+						                <div class="porduct_status_op">待发货</div>
+					                	<div class="porduct_sum"><span>总计:&nbsp;￥<span>${orders.total }</span></span></div>
+						            </td>
+						    	</tr>
+						    </table>
+						 </c:if>
+					</c:forEach>
+					<c:if test="${listCount.get(1) eq 0 }">
+					    <div class="cart_content">
+							<p class="fl"><img src="images/cart_yhd.png"/></p>
+							<div class="fl">
+								<p>没有符合条件的宝贝</p>
+								<p>请尝试其他搜索条件</p>
+							</div>
+						</div>	
+					</c:if>
+				</c:if>
+			</section>				
 		</div>
 		
 		<!-- 待收货 -->
@@ -365,79 +370,70 @@
 			                <li class="list_op">交易操作</li>
 			            </ul>
 			        </div>
-			        <div class="order_page">
+			       <!--  <div class="order_page">
 			        	<div>
 			        		<input type="button" id="lastPage" value="上一页">
 			        		<input type="button" id="nextPage" value="下一页">
 			        	</div>
-			        </div>
-
-			    	<table class="one_order" cellspacing="0">
-				    	<tr class="order">
-				    		<th colspan="4">
-				    			<div class="order_message">
-				    				<span class="order_time">2018-10-08 23:20:55</span>
-				    				<span class="order_num">订单号:&nbsp;</span>
-				    				<span class="order_num_text">0423507212341</span><span class="list_sum">￥ 50.8</span>
-				    			</div>
-				    			<div class="address_position">
-					    			<div class="address">
-					                		<span class="address_name">奏凯</span>
-					                		<div class="dropdown_iron"></div> 
-					                </div>
-					                <div class="address_detail">
-					                		<span>湖南省</span><br>
-					                		<span>电话:&nbsp;12345566781</span>
-					              	</div>
-					             </div>
-				    		</th>		    		
-				    	</tr>
-				    	<tr>
-				    		<td class="product">
-				    			<div class="porduct_img"><a href="javascript:;"><img src="images/1.png" alt=""></a></div>
-				            	<div class="porduct_text"><a href="javascript:;">夏季男士迷彩无袖T恤圆领潮流韩版修身男装背心青年时尚打底衫男</a></div>
-				            	<div class="porduct_price"><p>￥980</p></div>
-				            	<div class="porduct_amount"><span>1</span></div>
-				            </td>
-				            <td rowspan="3">
-				            	<div class="porduct_sum"><span>￥18000.00</span></div>
-				            </td>
-				            <td rowspan="3">
-				            	<p class="porduct_status_op">待收货</p>
-				            </td>
-				            <td rowspan="3">
-				            	<div class="porduct_op">
-					            	<a href="javascript:;" onclick="confirmReceipt('orderNum')">确认收货</a>
-				                </div>
-				            </td>
-				    	</tr>
-				    	<tr>
-				    		<td class="product">
-				    			<div class="porduct_img"><a href="javascript:;"><img src="images/1.png" alt=""></a></div>
-				            	<div class="porduct_text"><a href="javascript:;">夏季男士迷彩无袖T恤圆领潮流韩版修身男装背心青年时尚打底衫男</a></div>
-				            	<div class="porduct_price"><p>￥980</p></div>
-				            	<div class="porduct_amount"><span>1</span></div>
-				            </td>
-				    	</tr>
-				    	<tr>
-				    		<td class="product">
-				    			<div class="porduct_img"><a href="javascript:;"><img src="images/1.png" alt=""></a></div>
-				            	<div class="porduct_text"><a href="javascript:;">夏季男士迷彩无袖T恤圆领潮流韩版修身男装背心青年时尚打底衫男</a></div>
-				            	<div class="porduct_price"><p>￥980</p></div>
-				            	<div class="porduct_amount"><span>1</span></div>
-				            </td>
-				    	</tr>
-				    </table>
+			        </div> -->
+					<c:if test="${!empty(ordersList) }">
+					 	<c:forEach var="orders" items="${ordersList }">
+							<c:if test="${orders.orderstatus eq 3 }">
+								<table class="one_order" cellspacing="0">
+							    	<tr class="order">
+							    		<th colspan="4">
+							    			<div class="order_message">
+							    				<span class="order_time">${orders.chgdate }</span>
+							    				<span class="order_num">订单号:&nbsp;</span>
+							    				<span class="order_num_text">${orders.orderid}</span>
+							    				<span class="list_sum">￥${orders.total}</span>
+							    			</div>
+							    			<div class="address_position">
+								    			<div class="address">
+								                		<span class="address_name">${orders.consignee}</span>
+								                		<div class="dropdown_iron"></div> 
+								                </div>
+								                <div class="address_detail">
+								                		<span>${orders.address}</span><br>
+								                		<span>电话:&nbsp;${orders.phone}</span>
+								              	</div>
+							              	</div>
+							    		</th>		    		
+							    	</tr>
+							    	<c:forEach var="orderItem" items="${orders.getOrderItemList()}">
+							    		<tr class="product">
+								    		<td>
+								    			<div class="porduct_img"><a href="javascript:;"><img src="images/1.png" alt=""></a></div>
+								            	<div class="porduct_text"><a href="javascript:;">${orderItem.getBook().getBookname() }</a></div>
+								            	<div class="porduct_price"><p>￥<span>${orderItem.getBook().getPrice() }</span></p></div>
+								            	<div class="porduct_amount"><span>${orderItem.orderitemcount }</span></div>
+								            	<div class="porduct_subtotal"><span>${orderItem.subtotal }</span></div>
+								            </td>
+								    	</tr>
+							    	</c:forEach>
+							    	<tr class="porduct_sum_op">
+						    			<td>
+							            	<div class="porduct_op">
+								            	<a href="javascript:;" onclick="confirmReceipt(${orders.orderid})">确认收货</a>
+							                </div>
+							                <div class="porduct_status_op">待收货</div>
+						                	<div class="porduct_sum"><span>总计:&nbsp;￥<span>${orders.total }</span></span></div>
+							            </td>
+							    	</tr>
+							    </table>
+							 </c:if>
+						 </c:forEach>
+					 </c:if>
 				    
-				    
-				    <div class="cart_content">
-						<p class="fl"><img src="images/cart_yhd.png"/></p>
-						<div class="fl">
-							<p>购物车还是空的呢，快去采购吧~</p>
-							<p>或者登录查看之前加入的商品。</p>
-							<p><input type="button" name="" id="" value="登录" /><input type="button" name="" id="" value="去逛逛" /></p>
-						</div>
-					</div>	
+				    <c:if test="${listCount.get(2) eq 0 }">
+					    <div class="cart_content">
+							<p class="fl"><img src="images/cart_yhd.png"/></p>
+							<div class="fl">
+								<p>没有符合条件的宝贝</p>
+								<p>请尝试其他搜索条件</p>
+							</div>
+						</div>	
+					</c:if>
 			    </section>				
 		</div>
 		<!-- 待评价 -->
@@ -453,63 +449,71 @@
 			                <li class="list_op">交易操作</li>
 			            </ul>
 			        </div>
-			        <div class="order_page">
+			       <!--  <div class="order_page">
 			        	<div>
 			        		<input type="button" id="lastPage" value="上一页">
 			        		<input type="button" id="nextPage" value="下一页">
 			        	</div>
-			        </div>
-
-			    	<table class="one_order" cellspacing="0">
-				    	<tr class="order">
-				    		<th colspan="4">
-				    			<div class="order_message">
-				    				<span class="order_time">2018-10-08 23:20:55</span>
-				    				<span class="order_num">订单号:&nbsp;</span>
-				    				<span class="order_num_text">0423507212341</span><span class="list_sum">￥ 50.8</span>
-				    			</div>
-				    			<div class="address_position">
-					    			<div class="address">
-					                		<span class="address_name">走吧</span>
-					                		<div class="dropdown_iron"></div> 
-					                </div>
-					                <div class="address_detail">
-					                		<span>广东省广州市南沙科技咨询园</span><br>
-					                		<span>电话:&nbsp;12345566781</span>
-					              	</div>
-					             </div>
-				    		</th>		    		
-				    	</tr>
-				    	<tr>
-				    		<td class="product">
-				    			<div class="porduct_img"><a href="javascript:;"><img src="images/1.png" alt=""></a></div>
-				            	<div class="porduct_text"><a href="javascript:;">夏季男士迷彩无袖T恤圆领潮流韩版修身男装背心青年时尚打底衫男</a></div>
-				            	<div class="porduct_price"><p>￥980</p></div>
-				            	<div class="porduct_amount"><span>1</span></div>
-				            </td>
-				            <td rowspan="3">
-				            	<div class="porduct_sum"><span>￥18000.00</span></div>
-				            </td>
-				            <td rowspan="3">
-				            	<p class="porduct_status_op">待评价</p>
-				            </td>
-				            <td rowspan="3">
-				            	<div class="porduct_op">
-					            	<a href="evalute.jsp" class="delBtn">评价</a>
-				                </div>
-				            </td>
-				    	</tr>
-				    </table>
+			        </div> -->
+					
+					<c:if test="${!empty(ordersList) }">
+					 	<c:forEach var="orders" items="${ordersList }">
+							<c:if test="${orders.orderstatus eq 4 && orders.getOrderItemList().get(0).getEvastatus() eq 0}">
+								<table class="one_order" cellspacing="0">
+							    	<tr class="order">
+							    		<th colspan="4">
+							    			<div class="order_message">
+							    				<span class="order_time">${orders.chgdate }</span>
+							    				<span class="order_num">订单号:&nbsp;</span>
+							    				<span class="order_num_text">${orders.orderid}</span>
+							    				<span class="list_sum">￥${orders.total}</span>
+							    			</div>
+							    			<div class="address_position">
+								    			<div class="address">
+								                		<span class="address_name">${orders.consignee}</span>
+								                		<div class="dropdown_iron"></div> 
+								                </div>
+								                <div class="address_detail">
+								                		<span>${orders.address}</span><br>
+								                		<span>电话:&nbsp;${orders.phone}</span>
+								              	</div>
+							              	</div>
+							    		</th>		    		
+							    	</tr>
+							    	<c:forEach var="orderItem" items="${orders.getOrderItemList()}">
+							    		<tr class="product">
+								    		<td>
+								    			<div class="porduct_img"><a href="javascript:;"><img src="images/1.png" alt=""></a></div>
+								            	<div class="porduct_text"><a href="javascript:;">${orderItem.getBook().getBookname() }</a></div>
+								            	<div class="porduct_price"><p>￥<span>${orderItem.getBook().getPrice() }</span></p></div>
+								            	<div class="porduct_amount"><span>${orderItem.orderitemcount }</span></div>
+								            	<div class="porduct_subtotal"><span>${orderItem.subtotal }</span></div>
+								            </td>
+								    	</tr>
+							    	</c:forEach>
+							    	<tr class="porduct_sum_op">
+						    			<td>
+					                		<div class="porduct_op">
+						                		<a href="evaluateServlet?method=enterEvaluate&orderid=${orders.orderid}" class="delBtn">评价</a>
+						                	</div>
+						                	<div class="porduct_status_op">待评价</div>
+						                	<div class="porduct_sum"><span>总计:&nbsp;￥<span>${orders.total }</span></span></div>
+							            </td>
+							    	</tr>
+							    </table>
+						    </c:if>
+					    </c:forEach>
+				    </c:if>
 				    
-				    
-				    <div class="cart_content">
-						<p class="fl"><img src="images/cart_yhd.png"/></p>
-						<div class="fl">
-							<p>购物车还是空的呢，快去采购吧~</p>
-							<p>或者登录查看之前加入的商品。</p>
-							<p><input type="button" name="" id="" value="登录" /><input type="button" name="" id="" value="去逛逛" /></p>
-						</div>
-					</div>	
+				    <c:if test="${listCount.get(3) eq 0 }">
+					    <div class="cart_content">
+							<p class="fl"><img src="images/cart_yhd.png"/></p>
+							<div class="fl">
+								<p>没有符合条件的宝贝</p>
+								<p>请尝试其他搜索条件</p>
+							</div>
+						</div>	
+					</c:if>
 			    </section>				
 		</div>
 	
