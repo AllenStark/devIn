@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -26,38 +27,36 @@
 
 <div id="content">
 	
-	<div id="J_Order" class="order order-with-qr">
+	<div id="J_Order" class="order order-with-qr" >
 		<div class="order-wrapper">
 			<div class="J_APop" >
 				<!--二维码-->
-				<div id="J_QrWrapper" class="qr-wrapper" style="width: 140px;float: left;">
-					<canvas width="120" height="120" style="width: 140px; height: 140px;border: 1px red solid;">
+				<div id="J_QrWrapper" class="qr-wrapper" style="width: 160px;float: left;">
+					<canvas width="160" height="160" style="width: 160px; height: 160px;border: 1px red solid;">
 						
 					</canvas>
 				</div>
 			</div>
-			
-			<div class="order-title">
-				淘宝网 -- 秋冬季新款毛呢包臀短裙a字裙子格子裙裤显瘦鱼尾裙半身裙女高腰
-			</div>
-			<br />
-			<br />
-			<div class="order-seller">
-				卖家昵称：heitiefu
+			<div class="order-title" >
+			<c:forEach var="book" items="${bookName }">
+				${book }<br>
+			</c:forEach>
 			</div>
 			<span class="order-amount">
-				<em>49.80</em> 元
+				<em>${total }</em> 元
 			</span>
+			
 		</div>
-		
 	</div>
+		<hr />
 	
-	<hr />
+	
 	<div style="clear: both;"></div>
 <!--支付方法块-->
 	<div id="J-payMethod" class="main-container">
 		<div id="J-rcPaymentDisabled"></div>
-		<form name="expressFastPayFrom" id="lightPayForm" action="" method="post" autocomplete="off">
+		<form name="expressFastPayFrom" id="lightPayForm" action="payServlet?method=payConfirm" method="post" autocomplete="off">
+		<input type="hidden" name="orderid" value="${orderid }">
 			<div id="J-rcChannels" >
 				<div >
 					<ul id="J_MarketinglList"></ul>
@@ -71,7 +70,7 @@
 									<span class="pay-amount" >
 										<span class="amount fn-hide" >
 											<span >支付</span>
-											<em class="amount-font-R16" >49.80</em>
+											<em class="amount-font-R16" >${total }</em>
 											<span> 元</span>
 										</span>
 									</span>
@@ -86,13 +85,13 @@
 									<span class="pay-amount" >
 										<span class="amount">
 											<span>支付</span>
-											<em class="amount-font-R16" >49.80</em>
+											<em class="amount-font-R16" >${total }</em>
 											<span> 元</span>
 										</span>
 									</span>
 									<span class="channel-tit channel-icon icon banklogo-CCB_s"></span>
 									<span class="channel-name" title="中国建设银行" >中国建设银行</span>
-									<span class="card-number" >**9007</span>
+									<span class="card-number" >**9118</span>
 									<span class="card-type" >储蓄卡 | 快捷</span>
 								</label>
 							<input class="channel-input" id="ccb906-1" name="apiCode" type="radio" ></div>
@@ -104,7 +103,7 @@
 						<a class="manage-item manage-more fn-left" >
 							<span>其他付款方式 </span>
 						</a>
-						<a class="J_XBox manage-item manage-item-xbox fn-left" href="https://cashiergtj.alipay.com:443/standard/fastpay/useNewCard.htm?orderId=1007bfffc1859ae84b12013075055400">
+						<a class="J_XBox manage-item manage-item-xbox fn-left" href="#">
 							添加快捷/网银付款
 						</a>
 					</div>
@@ -130,8 +129,9 @@
 							            支付宝支付密码：
 							</label>
 							<div id="divPwd">
-							<input type="password" tabindex="1" class="password" maxlength="1" reado><input type="password" tabindex="2" class="password"  maxlength="1"><input type="password" tabindex="3" class="password"  maxlength="1"><input type="password" tabindex="4" class="password"  maxlength="1"><input type="password" tabindex="5" class="password" maxlength="1"><input type="password" tabindex="6" class="password" maxlength="1">
+							<input type="password" tabindex="1" class="password" maxlength="1" name="password"><input type="password" tabindex="2" class="password"  maxlength="1" name="password"><input type="password" tabindex="3" class="password"  maxlength="1" name="password"><input type="password" tabindex="4" class="password"  maxlength="1" name="password"><input type="password" tabindex="5" class="password" name="password"><input type="password" tabindex="6" class="password" maxlength="1" name="password">
 							</div>
+							<span name="FalseMess" style="color: red">${FalseMess }</span><br>
 						<span class="ui-form-other edit-link">
   						<a target="_blank" href="https://lab.alipay.com/user/passwordfind/index.htm?type=P">忘记密码？</a>       
 						</span>

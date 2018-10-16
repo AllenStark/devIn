@@ -108,8 +108,8 @@
 	</div>	
 	<div class="container">
 		<div class="checkout-box">
-			<form id="checkoutForm" action="#" method="post">
-				<!--收货地址部分-->
+			<form id="checkoutForm" action="orderConfirmServlet" method="post">
+<!--收货地址部分-->
 				<div>
 					<div class="box-hd">
 						<h2 class="title">收货信息</h2>
@@ -117,11 +117,11 @@
 					<hr />
 					<div class="">
 						<span class="receivingInfo">收货人:</span><br />
-						<input type="text" name="consignee" id="consignee" />
+						<input type="text" name="consignee" id="consignee" value="${user.consignee }"/>
 					</div>
 					<div>
 						<span class="receivingInfo">联系电话:</span><br />
-						<input type="text" name="phone" id="phone"/>
+						<input type="text" name="phone" id="phone" value="${user.phone }"/>
 						<span style="color: red" id="phoneMess"></span>
 					</div>
 					<div class="form-inline">
@@ -129,17 +129,17 @@
 				      	<div data-toggle="distpicker">
 					        <div class="form-group">
 					          <label class="sr-only" for="province3">Province</label>
-					          <select class="form-control" id="province3" data-province="浙江省" ></select>
+					          <select class="form-control" id="province3" data-province="${user.province }" ></select>
 					        </div>
 					        <div class="form-group">
 					          <label class="sr-only" for="city3">City</label>
-					          <select class="form-control" id="city3" data-city="杭州市" ></select>
+					          <select class="form-control" id="city3" data-city="${user.city }" ></select>
 					        </div>
 					        <div class="form-group">
 					          <label class="sr-only" for="district3">District</label>
-					          <select class="form-control" id="district3" data-district="西湖区" ></select>
+					          <select class="form-control" id="district3" data-district="${user.district }" ></select>
 					        </div>
-					        <input type="text" name="address" id="detailedAddr" placeholder="详细地址" />
+					        <input type="text" name="detailedaddr" id="detailedAddr" placeholder="详细地址"  value="${user.detailedaddr }"/>
 				      	</div>
 				      	
 			      	</div>
@@ -174,10 +174,10 @@
 														</a>
 													</div>
 												</div>
-	
+												<input type="hidden" name="isbn" value="${cartitem.getValue().getIsbn() }">
 												<div class="col col-2">${cartitem.getValue().getBook().getPrice() }</div>
-												<div class="col col-3">${cartitem.getValue().cartitemcount }</div>
-												<div class="col col-4">${cartitem.getValue().subtotal }</div>
+												<div class="col col-3"><input type="hidden" name="orderitemcount" value="${cartitem.getValue().cartitemcount }">${cartitem.getValue().cartitemcount }</div>
+												<div class="col col-4"><input type="hidden" name="subtotal" value="${cartitem.getValue().subtotal }">${cartitem.getValue().subtotal }</div>
 											</div>
 										</dd>
 									</c:forEach>
@@ -192,12 +192,16 @@
 	                                    	 订单总额：<span>${totalPrice }元</span>
 	                                   </li>
 	                                   <li>
-	                                   	寄送至：<span id="addressOutput" style="color:black;"></span>
+	                                   <input type="hidden" name="address" value="${user.province }${user.city }${user.district }${user.detailedaddr }">
+	                                   	寄送至：<span id="addressOutput" style="color:black;">
+	                                   	${user.province }${user.city }${user.district }${user.detailedaddr }
+	                                   	</span>
 	                                   </li>
 	                                   <li>
-	                                   	收货人：<span id="receivingPerson" style="color:black;"></span>
+	                                   	收货人：<span id="receivingPerson" style="color:black;">${user.consignee}  ${user.phone}</span>
 	                                   </li>
 	                               </ul>
+	                               <input type="hidden" name="total" value="${totalPrice }">
 	                               <p class="checkout-total">应付总额：<span><strong id="totalPrice">${totalPrice }</strong>元</span></p>
 	                           </div>
 	                           <!--  -->
@@ -211,14 +215,13 @@
 							<input type="hidden" id="couponValue" name="Checkout[couponsValue]">
 							<div class="checkout-confirm">
 
-								<a href="#" class="btn btn-lineDakeLight btn-back-cart" style="text-decoration: none;">返回购物车</a>
+								<a href="CartItemServlet?method=selectCartItemList" class="btn btn-lineDakeLight btn-back-cart" style="text-decoration: none;">返回购物车</a>
 								<input type="submit" class="btn btn-primary" value="立即下单" id="checkoutToPay" />
 							</div>
 						</div>
-					</div>
-
 			</form>
-			</div>
+		</div>
+	</div>
 			<!--底部-->
 			<div class="index_footer">
 				<div class="index_footer_1st fl">
