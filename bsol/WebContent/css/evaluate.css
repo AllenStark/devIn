@@ -44,6 +44,9 @@
 	border-top: 1px #d9e3eb dashed;
 	height: 250px;
 }
+.rate-msg{
+	font-size: 20px;
+}
 .rate-msg-box {
     border: 1px solid #DAF1FC;
     padding: 3px;
