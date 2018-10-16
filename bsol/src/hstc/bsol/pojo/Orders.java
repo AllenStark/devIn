@@ -1,5 +1,6 @@
 package hstc.bsol.pojo;
 
+import java.util.List;
 
 public class Orders {
 	private int orderid;
@@ -10,7 +11,16 @@ public class Orders {
 	private double total;
 	private int orderstatus;
 	private String chgdate;
+	private List<OrderItem> orderItemList;
 	
+	public List<OrderItem> getOrderItemList() {
+		return orderItemList;
+	}
+
+	public void setOrderItemList(List<OrderItem> orderItemList) {
+		this.orderItemList = orderItemList;
+	}
+
 	public Orders() {}
 	
 	public Orders(int orderid, int userid, String consignee, String phone, String address, Double total,
@@ -73,7 +83,7 @@ public class Orders {
 		this.address = address;
 	}
 
-	public Double getTotal() {
+	public double getTotal() {
 		return total;
 	}
 
