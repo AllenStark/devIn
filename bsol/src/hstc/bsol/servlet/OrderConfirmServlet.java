@@ -31,6 +31,10 @@ public class OrderConfirmServlet extends HttpServlet {
 		String address = request.getParameter("address");
 		String total = request.getParameter("total");
 		//调用业务逻辑
+		BookService bookService = new BookService();
+		Book book = new Book();
+		int oldStocks = 0;
+		int newStocks = 0;
 		OrdersService ordersService = new OrdersService();
 		Orders orders = new Orders();
 		orders.setUserid(userid);
@@ -55,6 +59,11 @@ public class OrderConfirmServlet extends HttpServlet {
 		for (int i = 0; i < num; i++) {
 			orderitem = new OrderItem(orderid, Long.parseLong(isbn[i]), Integer.parseInt(orderitemcount[i]), Double.parseDouble(subtotal[i])); 
 			orderitemService.insertOrderitem(orderitem);
+			//对数据库的库存量进行修改
+			book = bookService.queryOneBookByIsbn(Long.parseLong(isbn[i]));
+			oldStocks = book.getStocks();
+			newStocks = oldStocks-Integer.parseInt(orderitemcount[i]);
+			bookService.updateStocksByIsbn(Long.parseLong(isbn[i]), newStocks);
 		}
 		//传参
 		request.getRequestDispatcher("payServlet?method=payEnter&orderid="+orderid).forward(request, response);
